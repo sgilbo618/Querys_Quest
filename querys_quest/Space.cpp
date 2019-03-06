@@ -37,9 +37,70 @@ Space::~Space()
 
 
 /*********************************************************************
-** Description: Getter for symbol.
+** Description: Getter and Setter for symbol.
 *********************************************************************/
 std::string Space::getSpaceSymbol()
 {
 	return symbol;
+}
+
+void Space::setSpaceSymbol(std::string symbol)
+{
+	this->symbol = symbol;
+}
+
+
+/*********************************************************************
+** Description: Getter and Setter for up.
+*********************************************************************/
+Space * Space::getUp()
+{
+	return up;
+}
+
+void Space::setUp(Space * up)
+{
+	this->up = up;
+}
+
+
+/*********************************************************************
+** Description: Getter and Setter for down.
+*********************************************************************/
+Space * Space::getDown()
+{
+	return nullptr;
+}
+
+void Space::setDown(Space * down)
+{
+	this->down = down;
+}
+
+
+/*********************************************************************
+** Description: Getter and Setter for left.
+*********************************************************************/
+Space * Space::getLeft()
+{
+	return nullptr;
+}
+
+void Space::setLeft(Space * left)
+{
+	this->left = left;
+}
+
+
+/*********************************************************************
+** Description: Getter and Setter for right.
+*********************************************************************/
+Space * Space::getRight()
+{
+	return nullptr;
+}
+
+void Space::setRight(Space * right)
+{
+	this->right = right;
 }

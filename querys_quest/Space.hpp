@@ -36,6 +36,19 @@ public:
 
 	// Getters and Setters
 	std::string getSpaceSymbol();
+	void setSpaceSymbol(std::string symbol);
+	
+	Space* getUp();
+	void setUp(Space* up);
+
+	Space* getDown();
+	void setDown(Space* down);
+
+	Space* getLeft();
+	void setLeft(Space* left);
+
+	Space* getRight();
+	void setRight(Space* right);
 
 	// Methods
 	virtual void displayMessage() = 0;
