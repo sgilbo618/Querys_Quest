@@ -14,13 +14,15 @@
 #ifndef SPACE_HPP
 #define SPACE_HPP
 
+#include <string>
+
 enum SpaceType {Free, Wall, Door, Key, Element, Boot, Query};
 
 class Space
 {
 private:
 	SpaceType type;
-	char symbol;
+	std::string symbol;
 
 	Space* up;
 	Space* down;
@@ -33,7 +35,7 @@ public:
 	~Space();
 
 	// Getters and Setters
-	
+	std::string getSpaceSymbol();
 
 	// Methods
 

@@ -21,7 +21,7 @@
 Space::Space()
 {
 	type = Free;
-	symbol = ' ';
+	symbol = "  ";
 
 	up = nullptr;
 	down = nullptr;
@@ -36,4 +36,13 @@ Space::Space()
 *********************************************************************/
 Space::~Space()
 {
+}
+
+
+/*********************************************************************
+** Description: Getter for symbol.
+*********************************************************************/
+std::string Space::getSpaceSymbol()
+{
+	return symbol;
 }
