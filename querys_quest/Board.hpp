@@ -21,6 +21,7 @@ class Board
 {
 private:
 	Space*** gameBoard;
+	Space* player;
 
 public:
 	// Constructor and Destructor
@@ -29,10 +30,14 @@ public:
 
 	// Methods
 	void printGameBoard();
+
+	// Create board methods
 	void createIceRoom();
 	void fillInEmptySpaces();
 	void setSpacePointers();
-	//bool isInBounds(const int );
+
+	// Player
+	void movePlayer();
 };
 
 #endif // !BOARD_HPP

@@ -21,7 +21,7 @@
 ** Description: Default constructor for Board object.
 *********************************************************************/
 Board::Board()
-{
+{	
 	// Build 2D array of Spaces
 	gameBoard = new Space**[ROWS];
 
@@ -39,8 +39,14 @@ Board::Board()
 		}
 	}
 
+	// Build gameBoard
 	createIceRoom();
 	fillInEmptySpaces();
+	setSpacePointers();
+
+	// Build player
+	player = gameBoard[15][10];
+	player->setSpaceSymbol("Q ");
 }
 
 
@@ -134,5 +140,71 @@ void Board::fillInEmptySpaces()
 *********************************************************************/
 void Board::setSpacePointers()
 {
-	
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+		{
+			// Set ups - not top row
+			if (i != 0)
+			{
+				gameBoard[i][j]->setUp(gameBoard[i - 1][j]);
+			}
+
+			// Set downs - not bottom row
+			if (i != ROWS - 1)
+			{
+				gameBoard[i][j]->setDown(gameBoard[i + 1][j]);
+			}
+
+			// Set lefts - not first col
+			if (j != 0)
+			{
+				gameBoard[i][j]->setLeft(gameBoard[i][j - 1]);
+			}
+
+			// Set rights - not last col
+			if (j != COLS - 1)
+			{
+				gameBoard[i][j]->setRight(gameBoard[i][j + 1]);
+			}
+		}
+	}
+
+
+	/* Set top row - skip corners
+	for (int i = 1; i < COLS - 1; i++)
+	{
+		// down is one + 1 to row
+		gameBoard[0][i]->setDown(gameBoard[1][i]);
+		// left is i - 1 to col
+		gameBoard[0][i]->setLeft(gameBoard[0][i - 1]);
+		// right is i + 1 to col
+		gameBoard[0][i]->setRight(gameBoard[0][i + 1]);
+	}
+	*/
+	// Set bottom row - skip corners
+}
+
+
+/*********************************************************************
+** Function:
+** Description:
+*********************************************************************/
+void Board::movePlayer()
+{
+	// Get move from user
+	std::cout << "Enter move: ";
+	std::string move = "";
+	std::getline(std::cin, move);
+
+	// UP
+	if (move == "i") // && player->getUp != nullptr - for boundry checking
+	{
+		// function to check if space is legal move
+		// function to reset symbol - use enums in switch
+		// Move player up
+		player = player->getUp();
+		// set new space symbol to Q
+		player->setSpaceSymbol("Q ");
+	}
 }
