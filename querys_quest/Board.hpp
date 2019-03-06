@@ -14,8 +14,8 @@
 
 #include "Space.hpp"
 
-#define ROWS 25
-#define COLS 25
+#define ROWS 25 // i
+#define COLS 25 // j
 
 class Board
 {
@@ -29,6 +29,10 @@ public:
 
 	// Methods
 	void printGameBoard();
+	void createIceRoom();
+	void fillInEmptySpaces();
+	void setSpacePointers();
+	//bool isInBounds(const int );
 };
 
 #endif // !BOARD_HPP

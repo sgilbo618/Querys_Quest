@@ -11,6 +11,8 @@
 
 #include "Board.hpp"
 #include "Wall.hpp"
+#include "Free.hpp"
+
 #include <iostream>
 
 
@@ -21,11 +23,11 @@
 Board::Board()
 {
 	// Build 2D array of Spaces
-	gameBoard = new Space**[COLS];
+	gameBoard = new Space**[ROWS];
 
-	for (int j = 0; j < ROWS; j++)
+	for (int i = 0; i < COLS; i++)
 	{
-		gameBoard[j] = new Space*[ROWS];
+		gameBoard[i] = new Space*[COLS];
 	}
 
 	// Set all pointers to nullptr
@@ -33,9 +35,12 @@ Board::Board()
 	{
 		for (int j = 0; j < COLS; j++)
 		{
-			gameBoard[i][j] = new Wall;
+			gameBoard[i][j] = nullptr;
 		}
 	}
+
+	createIceRoom();
+	fillInEmptySpaces();
 }
 
 
@@ -65,10 +70,10 @@ void Board::printGameBoard()
 	std::cout << "# # # # # # # # # # # # # # # # # # # # # # # # # # #" << std::endl;
 
 	// Print gameBoard
-	for (int i = 0; i < COLS; i++)
+	for (int i = 0; i < ROWS; i++)
 	{
 		std::cout << "# ";
-		for (int j = 0; j < ROWS; j++)
+		for (int j = 0; j < COLS; j++)
 		{
 			std::cout << gameBoard[i][j]->getSpaceSymbol();
 		}
@@ -77,4 +82,57 @@ void Board::printGameBoard()
 
 	// Print bottom boarder
 	std::cout << "# # # # # # # # # # # # # # # # # # # # # # # # # # #" << std::endl;
+}
+
+
+/*********************************************************************
+** Function: createIceRoom()
+** Description: Adds the Spaces to the gameBoard that make up the ice
+**				room.
+*********************************************************************/
+void Board::createIceRoom()
+{
+	for (int i = 0; i <= 11; i++)
+	{
+		gameBoard[i][12] = new Wall;
+	}
+
+	for (int i = 0; i <= 7; i++)
+	{
+		gameBoard[11][i] = new Wall;
+	}
+
+	gameBoard[11][10] = new Wall;
+	gameBoard[11][11] = new Wall;
+}
+
+
+/*********************************************************************
+** Function: fillInEmptySpaces()
+** Description: Loops through gameBoard and creates a free space where
+**				ever there is a nullptr.
+*********************************************************************/
+void Board::fillInEmptySpaces()
+{
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+		{
+			if (gameBoard[i][j] == nullptr)
+			{
+				gameBoard[i][j] = new Free;
+			}
+		}
+	}
+}
+
+
+/*********************************************************************
+** Function: setSpacePointers()
+** Description: Loop through gameBoard and set all of the Space's
+**				directional pointers to its surrounding Spaces.
+*********************************************************************/
+void Board::setSpacePointers()
+{
+	
 }
