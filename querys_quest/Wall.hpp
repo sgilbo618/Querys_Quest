@@ -19,6 +19,7 @@ class Wall : public Space
 public:
 	Wall();
 	~Wall();
+	virtual void displayMessage();
 };
 
 #endif // !WALL_HPP

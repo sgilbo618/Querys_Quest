@@ -20,9 +20,6 @@
 *********************************************************************/
 Space::Space()
 {
-	type = FREE;
-	symbol = "  ";
-
 	up = nullptr;
 	down = nullptr;
 	left = nullptr;

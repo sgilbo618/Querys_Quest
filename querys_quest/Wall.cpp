@@ -9,6 +9,7 @@
 *********************************************************************/
 
 #include "Wall.hpp"
+#include <iostream>
 
 
 /*********************************************************************
@@ -28,4 +29,15 @@ Wall::Wall()
 *********************************************************************/
 Wall::~Wall()
 {
+}
+
+
+/*********************************************************************
+** Function: displayMessage()
+** Description: Displays message to user if player attempts to go 
+**				onto a Wall space.
+*********************************************************************/
+void Wall::displayMessage()
+{
+	std::cout << "This is a wall - can't go here!" << std::endl;
 }

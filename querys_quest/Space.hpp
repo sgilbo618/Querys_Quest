@@ -38,7 +38,7 @@ public:
 	std::string getSpaceSymbol();
 
 	// Methods
-
+	virtual void displayMessage() = 0;
 };
 
 #endif // !SPACE_HPP
