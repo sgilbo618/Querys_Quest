@@ -10,6 +10,7 @@
 *********************************************************************/
 
 #include "Board.hpp"
+#include "Wall.hpp"
 #include <iostream>
 
 
@@ -32,7 +33,7 @@ Board::Board()
 	{
 		for (int j = 0; j < COLS; j++)
 		{
-			gameBoard[i][j] = new Space;
+			gameBoard[i][j] = new Wall;
 		}
 	}
 }

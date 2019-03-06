@@ -16,11 +16,11 @@
 
 #include <string>
 
-enum SpaceType {Free, Wall, Door, Key, Element, Boot, Query};
+enum SpaceType {FREE, WALL, DOOR, KEY, ELEMENT, BOOT, QUERY};
 
 class Space
 {
-private:
+protected:
 	SpaceType type;
 	std::string symbol;
 

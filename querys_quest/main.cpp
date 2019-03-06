@@ -6,9 +6,14 @@
 ** Description:
 *********************************************************************/
 
+#include "Board.hpp"
+#include <iostream>
+
+
 int main()
 {
-	
+	Board gameBoard;
+	gameBoard.printGameBoard();
 
 	return 0;
 }
