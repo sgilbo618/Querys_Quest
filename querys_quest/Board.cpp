@@ -188,15 +188,24 @@ void Board::movePlayer()
 	if (move == "i" && player->getUp() != nullptr) // && is for boundry checking
 	{
 		// function to check if space is legal move
+
 		// function to reset symbol - use enums in switch
+		resetSpaceSymbol();
+
 		// Move player up
 		player = player->getUp();
+
 		// set new space symbol to Q
 		player->setSpaceSymbol("Q ");
 	}
 	// Down
 	else if (move == "k" && player->getDown() != nullptr)
 	{
+		// function to check if space is legal move
+
+		// function to reset symbol - use enums in switch
+		resetSpaceSymbol();
+		
 		// Move player down
 		player = player->getDown();
 
@@ -206,6 +215,11 @@ void Board::movePlayer()
 	// Left
 	else if (move == "j" && player->getLeft() != nullptr)
 	{
+		// function to check if space is legal move
+
+		// function to reset symbol - use enums in switch
+		resetSpaceSymbol();
+		
 		// Move player left
 		player = player->getLeft();
 
@@ -215,6 +229,11 @@ void Board::movePlayer()
 	// Right
 	else if (move == "l" && player->getRight() != nullptr)
 	{
+		// function to check if space is legal move
+
+		// function to reset symbol - use enums in switch
+		resetSpaceSymbol();
+		
 		// Move player right
 		player = player->getRight();
 
@@ -225,5 +244,23 @@ void Board::movePlayer()
 	{
 		std::cout << move << std::endl;
 		std::cout << "That move is out of bounds" << std::endl;
+	}
+}
+
+
+/*********************************************************************
+** Function: resetSpaceSymbol()
+** Description: Looks up the space type that the player is on and
+**				changes its symbol back to its orignal state.
+*********************************************************************/
+void Board::resetSpaceSymbol()
+{
+	SpaceType type = player->getType();
+
+	switch (type)
+	{
+	case FREE:
+		player->setSpaceSymbol("  ");
+		break;
 	}
 }

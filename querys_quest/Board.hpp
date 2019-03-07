@@ -38,7 +38,7 @@ public:
 
 	// Player
 	void movePlayer();
-
+	void resetSpaceSymbol();
 };
 
 #endif // !BOARD_HPP

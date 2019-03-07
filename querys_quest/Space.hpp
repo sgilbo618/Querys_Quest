@@ -35,6 +35,8 @@ public:
 	~Space();
 
 	// Getters and Setters
+	SpaceType getType();
+
 	std::string getSpaceSymbol();
 	void setSpaceSymbol(std::string symbol);
 	
