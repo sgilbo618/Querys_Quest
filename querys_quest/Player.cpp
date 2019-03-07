@@ -20,6 +20,8 @@
 Player::Player()
 {
 	playerPtr = nullptr;
+	isAlive = true;
+	steps = 0;
 }
 
 
@@ -31,76 +33,126 @@ Player::~Player()
 {
 }
 
+
+/*********************************************************************
+** Function: checkIsAlive()
+** Description: Checks number of steps and what space the player is on
+**				and determines if the player is still alive or not.
+**				Sets and returns isAlive. Will return true if still 
+**				alive or false if not.
+*********************************************************************/
+bool Player::checkIsAlive()
+{
+	if (steps >= MAX_STEPS)
+	{
+		std::cout << "Query ran out of steps and died!" << std::endl;
+		isAlive = false;
+	}
+
+
+	return isAlive;
+}
+
+
+/*********************************************************************
+** Function: movePlayer()
+** Description: Gets and validates user input for player movement and
+**				moves the player if the move is valid.
+*********************************************************************/
 void Player::movePlayer()
 {
-	// Get move from user
-	std::cout << "Enter move: ";
 	std::string move = "";
-	std::getline(std::cin, move);
+
+	// Get move from user
+	do
+	{
+		std::cout << "Enter move: ";
+		std::getline(std::cin, move);
+		if (move != "i" && move != "k" && move != "j" && move != "l")
+		{
+			std::cout << "**Invalid Entry - ";
+		}
+
+	} while (move != "i" && move != "k" && move != "j" && move != "l");
 
 	// UP
 	if (move == "i" && playerPtr->getUp() != nullptr) // && is for boundry checking
 	{
-		// function to check if space is legal move
-
-		// function to reset symbol - use enums in switch
-		resetSpaceSymbol();
-
-		// Move player up
-		playerPtr = playerPtr->getUp();
-
-		// set new space symbol to Q
-		playerPtr->setSpaceSymbol("Q ");
+		makeMove(playerPtr->getUp());
 	}
 	// Down
 	else if (move == "k" && playerPtr->getDown() != nullptr)
 	{
-		// function to check if space is legal move
-
-		// function to reset symbol - use enums in switch
-		resetSpaceSymbol();
-
-		// Move player down
-		playerPtr = playerPtr->getDown();
-
-		// Set new space symbol to Q
-		playerPtr->setSpaceSymbol("Q ");
+		makeMove(playerPtr->getDown());
 	}
 	// Left
 	else if (move == "j" && playerPtr->getLeft() != nullptr)
 	{
-		// function to check if space is legal move
-
-		// function to reset symbol - use enums in switch
-		resetSpaceSymbol();
-
-		// Move player left
-		playerPtr = playerPtr->getLeft();
-
-		// Set new space symbol to Q
-		playerPtr->setSpaceSymbol("Q ");
+		makeMove(playerPtr->getLeft());
 	}
 	// Right
 	else if (move == "l" && playerPtr->getRight() != nullptr)
 	{
-		// function to check if space is legal move
-
-		// function to reset symbol - use enums in switch
-		resetSpaceSymbol();
-
-		// Move player right
-		playerPtr = playerPtr->getRight();
-
-		// Set new space symbol to Q
-		playerPtr->setSpaceSymbol("Q ");
+		makeMove(playerPtr->getRight());
 	}
 	else
 	{
-		std::cout << move << std::endl;
-		std::cout << "That move is out of bounds" << std::endl;
+		std::cout << "This is a wall - can't go here!" << std::endl;
 	}
 }
 
+
+/*********************************************************************
+** Function: makeMove(Space*)
+** Description: Takes in the space the player is attempting to move to
+**				and moves there if it is a legal move.
+*********************************************************************/
+void Player::makeMove(Space * moveSpace)
+{
+	// Check if space is legal move
+	if (checkLegalMove(moveSpace))
+	{
+		// reset symbol to original
+		resetSpaceSymbol();
+
+		// Move player to new space
+		playerPtr = moveSpace;
+
+		// set new space symbol to Q
+		playerPtr->setSpaceSymbol("Q ");
+
+		// increment steps
+		steps++;
+	}
+}
+
+
+/*********************************************************************
+** Function: checkLegalMove(Space*)
+** Description: Checks the space Player is attempting to access and 
+**				determines if the space is a legal move. Returns true
+**				if it is, false if it is not.
+*********************************************************************/
+bool Player::checkLegalMove(Space* moveSpace)
+{
+	bool isLegal = true;
+	std::string moveSymbol = moveSpace->getSpaceSymbol();
+
+	if (moveSymbol == "# ")
+	{
+		moveSpace->displayMessage();
+		isLegal = false;
+	}
+
+	return isLegal;
+}
+
+
+/*********************************************************************
+** Function: resetSpaceSymbol()
+** Description: Looks up the space type that the player is on and
+**				changes its symbol back to its orignal state.
+*********************************************************************/
 void Player::resetSpaceSymbol()
 {
 	SpaceType type = playerPtr->getType();

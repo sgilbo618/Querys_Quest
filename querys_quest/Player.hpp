@@ -14,18 +14,26 @@
 
 #include "Space.hpp"
 
+#define MAX_STEPS 10
 
 class Player
 {
 private:
 	Space* playerPtr;
+	bool isAlive;
+	int steps;
 
 public:
 	// Constructor and Destructor
 	Player();
 	~Player();
 
+	bool checkIsAlive();
+
+	// Move methods
 	void movePlayer();
+	void makeMove(Space* moveSpace);
+	bool checkLegalMove(Space* moveSpace);
 	void resetSpaceSymbol();
 
 	friend class Board;
