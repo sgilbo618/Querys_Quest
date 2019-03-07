@@ -121,12 +121,14 @@
     <ClCompile Include="..\..\..\Final_Project_Query%27s_Quest\Querys_Quest\querys_quest\Board.cpp" />
     <ClCompile Include="..\..\..\Final_Project_Query%27s_Quest\Querys_Quest\querys_quest\Free.cpp" />
     <ClCompile Include="..\..\..\Final_Project_Query%27s_Quest\Querys_Quest\querys_quest\main.cpp" />
+    <ClCompile Include="..\..\..\Final_Project_Query%27s_Quest\Querys_Quest\querys_quest\Player.cpp" />
     <ClCompile Include="..\..\..\Final_Project_Query%27s_Quest\Querys_Quest\querys_quest\Space.cpp" />
     <ClCompile Include="Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Final_Project_Query%27s_Quest\Querys_Quest\querys_quest\Board.hpp" />
     <ClInclude Include="..\..\..\Final_Project_Query%27s_Quest\Querys_Quest\querys_quest\Free.hpp" />
+    <ClInclude Include="..\..\..\Final_Project_Query%27s_Quest\Querys_Quest\querys_quest\Player.hpp" />
     <ClInclude Include="..\..\..\Final_Project_Query%27s_Quest\Querys_Quest\querys_quest\Space.hpp" />
     <ClInclude Include="Wall.hpp" />
   </ItemGroup>

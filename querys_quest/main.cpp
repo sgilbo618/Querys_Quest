@@ -13,16 +13,7 @@
 int main()
 {
 	Board gameBoard;
-	gameBoard.printGameBoard();
-
-	int counter = 20;
-	while (counter > 0)
-	{
-		gameBoard.movePlayer();
-		gameBoard.printGameBoard();
-
-		counter--;
-	}
+	gameBoard.runGame();
 
 	return 0;
 }

@@ -13,6 +13,7 @@
 #define BOARD_HPP
 
 #include "Space.hpp"
+#include "Player.hpp"
 
 #define ROWS 25 // i
 #define COLS 25 // j
@@ -21,7 +22,8 @@ class Board
 {
 private:
 	Space*** gameBoard;
-	Space* player;
+	Player player;
+	//Space* player;
 
 public:
 	// Constructor and Destructor
@@ -36,9 +38,10 @@ public:
 	void fillInEmptySpaces();
 	void setSpacePointers();
 
+	void runGame();
 	// Player
-	void movePlayer();
-	void resetSpaceSymbol();
+	//void movePlayer();
+	//void resetSpaceSymbol();
 };
 
 #endif // !BOARD_HPP

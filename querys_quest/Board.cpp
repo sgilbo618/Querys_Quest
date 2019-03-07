@@ -45,8 +45,11 @@ Board::Board()
 	setSpacePointers();
 
 	// Build player
-	player = gameBoard[15][10];
-	player->setSpaceSymbol("Q ");
+	player.playerPtr = gameBoard[15][10];
+	player.playerPtr->setSpaceSymbol("Q ");
+	//player = gameBoard[15]10];
+	//player->setSpaceSymbol("Q ");
+
 }
 
 
@@ -171,12 +174,27 @@ void Board::setSpacePointers()
 	}
 }
 
+void Board::runGame()
+{
+	printGameBoard();
+
+	int counter = 200;
+
+	while (counter > 0)
+	{
+		player.movePlayer();
+		printGameBoard();
+
+		counter--;
+	}
+}
+
 
 /*********************************************************************
 ** Function: movePlayer()
 ** Description: Gets and validates user input for player movement and
 **				moves the player if the move is valid.
-*********************************************************************/
+*********************************************************************
 void Board::movePlayer()
 {
 	// Get move from user
@@ -246,13 +264,13 @@ void Board::movePlayer()
 		std::cout << "That move is out of bounds" << std::endl;
 	}
 }
-
+*/
 
 /*********************************************************************
 ** Function: resetSpaceSymbol()
 ** Description: Looks up the space type that the player is on and
 **				changes its symbol back to its orignal state.
-*********************************************************************/
+*********************************************************************
 void Board::resetSpaceSymbol()
 {
 	SpaceType type = player->getType();
@@ -264,3 +282,4 @@ void Board::resetSpaceSymbol()
 		break;
 	}
 }
+*/
