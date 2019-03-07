@@ -23,25 +23,27 @@ class Board
 private:
 	Space*** gameBoard;
 	Player player;
-	//Space* player;
 
 public:
 	// Constructor and Destructor
 	Board();
 	~Board();
 
-	// Methods
+	// Utility Methods
+	void runGame();
 	void printGameBoard();
-
-	// Create board methods
-	void createIceRoom();
-	void fillInEmptySpaces();
 	void setSpacePointers();
 
-	void runGame();
-	// Player
-	//void movePlayer();
-	//void resetSpaceSymbol();
+	// Create Room methods
+	void createGameBoard();
+	void createMainRoom();
+	void createIceRoom();
+	void createMazeRoom();
+	void createWaterRoom();
+	void createMixRoom();
+	void createFinishRoom();
+	void fillInEmptySpaces();
+
 };
 
 #endif // !BOARD_HPP
