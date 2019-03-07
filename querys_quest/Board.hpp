@@ -38,6 +38,7 @@ public:
 
 	// Player
 	void movePlayer();
+
 };
 
 #endif // !BOARD_HPP

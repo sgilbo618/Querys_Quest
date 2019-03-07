@@ -169,26 +169,13 @@ void Board::setSpacePointers()
 			}
 		}
 	}
-
-
-	/* Set top row - skip corners
-	for (int i = 1; i < COLS - 1; i++)
-	{
-		// down is one + 1 to row
-		gameBoard[0][i]->setDown(gameBoard[1][i]);
-		// left is i - 1 to col
-		gameBoard[0][i]->setLeft(gameBoard[0][i - 1]);
-		// right is i + 1 to col
-		gameBoard[0][i]->setRight(gameBoard[0][i + 1]);
-	}
-	*/
-	// Set bottom row - skip corners
 }
 
 
 /*********************************************************************
-** Function:
-** Description:
+** Function: movePlayer()
+** Description: Gets and validates user input for player movement and
+**				moves the player if the move is valid.
 *********************************************************************/
 void Board::movePlayer()
 {
@@ -198,7 +185,7 @@ void Board::movePlayer()
 	std::getline(std::cin, move);
 
 	// UP
-	if (move == "i") // && player->getUp != nullptr - for boundry checking
+	if (move == "i" && player->getUp() != nullptr) // && is for boundry checking
 	{
 		// function to check if space is legal move
 		// function to reset symbol - use enums in switch
@@ -206,5 +193,37 @@ void Board::movePlayer()
 		player = player->getUp();
 		// set new space symbol to Q
 		player->setSpaceSymbol("Q ");
+	}
+	// Down
+	else if (move == "k" && player->getDown() != nullptr)
+	{
+		// Move player down
+		player = player->getDown();
+
+		// Set new space symbol to Q
+		player->setSpaceSymbol("Q ");
+	}
+	// Left
+	else if (move == "j" && player->getLeft() != nullptr)
+	{
+		// Move player left
+		player = player->getLeft();
+
+		// Set new space symbol to Q
+		player->setSpaceSymbol("Q ");
+	}
+	// Right
+	else if (move == "l" && player->getRight() != nullptr)
+	{
+		// Move player right
+		player = player->getRight();
+
+		// Set new space symbol to Q
+		player->setSpaceSymbol("Q ");
+	}
+	else
+	{
+		std::cout << move << std::endl;
+		std::cout << "That move is out of bounds" << std::endl;
 	}
 }

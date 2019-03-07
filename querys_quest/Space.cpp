@@ -69,7 +69,7 @@ void Space::setUp(Space * up)
 *********************************************************************/
 Space * Space::getDown()
 {
-	return nullptr;
+	return down;
 }
 
 void Space::setDown(Space * down)
@@ -83,7 +83,7 @@ void Space::setDown(Space * down)
 *********************************************************************/
 Space * Space::getLeft()
 {
-	return nullptr;
+	return left;
 }
 
 void Space::setLeft(Space * left)
@@ -97,7 +97,7 @@ void Space::setLeft(Space * left)
 *********************************************************************/
 Space * Space::getRight()
 {
-	return nullptr;
+	return right;
 }
 
 void Space::setRight(Space * right)
