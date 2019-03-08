@@ -44,6 +44,10 @@ public:
 	void createFinishRoom();
 	void fillInEmptySpaces();
 
+	// Element Methods
+	void checkForElements();
+	void onIce();
+
 };
 
 #endif // !BOARD_HPP

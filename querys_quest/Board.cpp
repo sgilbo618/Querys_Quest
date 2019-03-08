@@ -12,6 +12,7 @@
 #include "Board.hpp"
 #include "Wall.hpp"
 #include "Free.hpp"
+#include "Ice.hpp"
 
 #include <iostream>
 
@@ -77,6 +78,7 @@ void Board::runGame()
 	{
 		player.movePlayer();
 		printGameBoard();
+		checkForElements();
 
 		//counter--;
 	}
@@ -191,6 +193,17 @@ void Board::createIceRoom()
 	gameBoard[11][4] = new Wall; gameBoard[11][5] = new Wall; gameBoard[11][6] = new Wall;
 	gameBoard[11][7] = new Wall; gameBoard[11][10] = new Wall; gameBoard[11][11] = new Wall;
 	gameBoard[11][12] = new Wall; 
+
+	// Ice
+	for (int i = 0; i <= 9; i++)
+	{
+		for (int j = 0; j <= 10; j++)
+		{
+			gameBoard[i][j] = new Ice;
+		}
+	}
+	gameBoard[10][5] = new Ice; gameBoard[10][6] = new Ice; gameBoard[10][7] = new Ice;
+	gameBoard[10][8] = new Ice; gameBoard[10][9] = new Ice;
 }
 
 void Board::createMazeRoom()
@@ -267,5 +280,105 @@ void Board::fillInEmptySpaces()
 				gameBoard[i][j] = new Free;
 			}
 		}
+	}
+}
+
+
+/*********************************************************************
+** Function: checkForElements()
+** Description: Gets the player's current position and checks to see
+**				if player is on any element spaces. If it is, it
+**				calls the appropriate element function.
+*********************************************************************/
+void Board::checkForElements()
+{
+	ElementType elementType = player.playerPtr->getElementType();
+
+	switch (elementType)
+	{
+	case ICE:
+		onIce();
+		break;
+
+	case FIRE:
+		break;
+
+	case WATER:
+		break;
+	}
+}
+
+
+/*********************************************************************
+** Function: onIce()
+** Description: Checks if player has ice boots. If they don't, player
+**				slides until not on ice anymore. If they do, player
+**				walks like normal.
+*********************************************************************/
+void Board::onIce()
+{
+	// Get direction
+	Direction direction = player.getDirection();
+	std::cout << direction << std::endl;
+	
+	while (player.playerPtr->getElementType() == ICE)
+	{	
+		switch (direction)
+		{
+		case UP:
+			if (player.playerPtr->getUp() != nullptr)
+			{
+				player.resetSpaceSymbol();
+				player.playerPtr = player.playerPtr->getUp();
+				player.playerPtr->setSpaceSymbol("Q ");
+				//player.makeMove(player.playerPtr->getUp());
+			}
+			else
+			{
+				direction = DOWN;
+			}
+			break;
+		case DOWN:
+			if (player.playerPtr->getDown() != nullptr)
+			{
+				player.resetSpaceSymbol();
+				player.playerPtr = player.playerPtr->getDown();
+				player.playerPtr->setSpaceSymbol("Q ");
+				//player.makeMove(player.playerPtr->getDown());
+			}
+			else
+			{
+				direction = UP;
+			}
+			break;
+		case LEFT:
+			if (player.playerPtr->getLeft() != nullptr)
+			{
+				player.resetSpaceSymbol();
+				player.playerPtr = player.playerPtr->getLeft();
+				player.playerPtr->setSpaceSymbol("Q ");
+				//player.makeMove(player.playerPtr->getUp());
+			}
+			else
+			{
+				direction = RIGHT;
+			}
+			break;
+		case RIGHT:
+			if (player.playerPtr->getRight() != nullptr)
+			{
+				player.resetSpaceSymbol();
+				player.playerPtr = player.playerPtr->getRight();
+				player.playerPtr->setSpaceSymbol("Q ");
+				//player.makeMove(player.playerPtr->getUp());
+			}
+			else
+			{
+				direction = LEFT;
+			}
+			break;
+		}
+		printGameBoard();
+		player.playerPtr->displayMessage();
 	}
 }
