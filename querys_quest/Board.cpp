@@ -16,6 +16,7 @@
 #include "Fire.hpp"
 #include "Water.hpp"
 #include "Door.hpp"
+#include "Key.hpp"
 
 #include <iostream>
 
@@ -171,6 +172,9 @@ void Board::createGameBoard()
 
 void Board::createMainRoom()
 {
+	// Blue Key
+	gameBoard[13][6] = new Key("b ", BLUEKEY);
+
 	// Walls
 	gameBoard[11][5] = new Wall; gameBoard[11][6] = new Wall; gameBoard[11][7] = new Wall;
 	gameBoard[11][10] = new Wall; gameBoard[11][11] = new Wall; gameBoard[11][12] = new Wall;
@@ -188,6 +192,9 @@ void Board::createMainRoom()
 
 void Board::createIceRoom()
 {
+	// Green Key
+	gameBoard[1][5] = new Key("g ", GREENKEY);
+	
 	// Walls
 	gameBoard[0][12] = new Wall; gameBoard[1][12] = new Wall; gameBoard[2][12] = new Wall;
 	gameBoard[3][12] = new Wall; gameBoard[4][12] = new Wall; gameBoard[5][12] = new Wall;
@@ -199,7 +206,7 @@ void Board::createIceRoom()
 	gameBoard[11][12] = new Wall; 
 
 	// Free
-	gameBoard[1][3] = new Free; gameBoard[1][8] = new Free; gameBoard[2][1] = new Free;
+	gameBoard[1][3] = new Free; gameBoard[2][1] = new Free;
 	gameBoard[2][6] = new Free; gameBoard[4][7] = new Free; gameBoard[4][10] = new Free;
 	gameBoard[5][3] = new Free; gameBoard[5][6] = new Free; gameBoard[7][4] = new Free;
 	gameBoard[7][9] = new Free; gameBoard[9][1] = new Free; gameBoard[9][7] = new Free;
@@ -234,6 +241,9 @@ void Board::createIceRoom()
 
 void Board::createMazeRoom()
 {
+	// Red Key
+	gameBoard[22][8] = new Key("r ", REDKEY);
+	
 	// Walls
 	gameBoard[13][1] = new Wall; gameBoard[13][2] = new Wall; gameBoard[14][1] = new Wall;
 	gameBoard[14][2] = new Wall; gameBoard[14][3] = new Wall; gameBoard[14][4] = new Wall;
