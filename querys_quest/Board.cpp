@@ -14,6 +14,7 @@
 #include "Free.hpp"
 #include "Ice.hpp"
 #include "Fire.hpp"
+#include "Water.hpp"
 
 #include <iostream>
 
@@ -203,6 +204,18 @@ void Board::createIceRoom()
 	gameBoard[7][9] = new Free; gameBoard[9][1] = new Free; gameBoard[9][7] = new Free;
 	gameBoard[10][4] = new Free; gameBoard[10][10] = new Free;
 
+	// Water
+	for (int i = 0; i <= 11; i++)
+	{
+		gameBoard[0][i] = new Water;
+		if (i < 11)
+		{
+			gameBoard[i][0] = new Water;
+			gameBoard[i][11] = new Water;
+		}
+	}
+	gameBoard[10][1] = new Water; gameBoard[10][2] = new Water; gameBoard[10][3] = new Water;
+
 	// Ice
 	for (int i = 1; i <= 9; i++)
 	{
@@ -216,11 +229,11 @@ void Board::createIceRoom()
 	}
 	gameBoard[10][5] = new Ice; gameBoard[10][6] = new Ice; gameBoard[10][7] = new Ice;
 	gameBoard[10][8] = new Ice; gameBoard[10][9] = new Ice;
-
 }
 
 void Board::createMazeRoom()
 {
+	// Walls
 	gameBoard[13][1] = new Wall; gameBoard[13][2] = new Wall; gameBoard[14][1] = new Wall;
 	gameBoard[14][2] = new Wall; gameBoard[14][3] = new Wall; gameBoard[14][4] = new Wall;
 	gameBoard[16][1] = new Wall; gameBoard[16][2] = new Wall; gameBoard[16][3] = new Wall;
@@ -236,6 +249,9 @@ void Board::createMazeRoom()
 	gameBoard[23][2] = new Wall; gameBoard[23][3] = new Wall; gameBoard[23][4] = new Wall;
 	gameBoard[23][5] = new Wall; gameBoard[23][7] = new Wall; gameBoard[23][8] = new Wall;
 	gameBoard[23][9] = new Wall; gameBoard[24][9] = new Wall;
+
+	// Fire
+	gameBoard[21][8] = new Fire;
 }
 
 void Board::createWaterRoom()
@@ -246,13 +262,41 @@ void Board::createWaterRoom()
 	gameBoard[17][17] = new Wall; gameBoard[17][18] = new Wall; gameBoard[18][18] = new Wall;
 	gameBoard[19][18] = new Wall; gameBoard[20][18] = new Wall; gameBoard[21][18] = new Wall;
 	gameBoard[22][18] = new Wall; gameBoard[23][18] = new Wall; gameBoard[24][18] = new Wall;
+
+	// Water
+	gameBoard[19][11] = new Water; gameBoard[19][12] = new Water; gameBoard[19][13] = new Water;
+	gameBoard[19][14] = new Water; gameBoard[19][15] = new Water; gameBoard[19][16] = new Water;
+	gameBoard[19][17] = new Water; gameBoard[20][11] = new Water; gameBoard[21][11] = new Water;
+	gameBoard[21][13] = new Water; gameBoard[21][14] = new Water; gameBoard[21][15] = new Water;
+	gameBoard[21][16] = new Water; gameBoard[22][11] = new Water; gameBoard[22][16] = new Water;
+	gameBoard[23][11] = new Water; gameBoard[23][12] = new Water; gameBoard[23][13] = new Water;
+	gameBoard[23][14] = new Water; gameBoard[23][15] = new Water; gameBoard[23][16] = new Water;
 }
 
 void Board::createMixRoom()
 {
-	// Walls
-	gameBoard[11][19] = new Wall; gameBoard[11][20] = new Wall; gameBoard[11][21] = new Wall;
-	gameBoard[11][22] = new Wall; gameBoard[11][23] = new Wall; gameBoard[11][24] = new Wall;
+	for (int i = 19; i <= 24; i++)
+	{
+		// Walls
+		gameBoard[11][i] = new Wall;
+
+		// Fire
+		gameBoard[12][i] = new Fire; gameBoard[19][i] = new Fire; gameBoard[22][i] = new Fire;
+
+		// Ice
+		gameBoard[17][i] = new Ice; gameBoard[18][i] = new Ice;
+		if (i >= 21 && i <= 23)
+		{
+			gameBoard[14][i] = new Ice; gameBoard[15][i] = new Ice; gameBoard[16][i] = new Ice;
+		}
+	}
+	// More ice
+	gameBoard[13][19] = new Ice; gameBoard[13][20] = new Ice; gameBoard[13][22] = new Ice; 
+	gameBoard[13][23] = new Ice;
+
+	// More fire
+	gameBoard[13][24] = new Fire; gameBoard[14][24] = new Fire; gameBoard[15][24] = new Fire;
+	gameBoard[16][24] = new Fire; gameBoard[17][24] = new Fire; gameBoard[18][24] = new Fire;
 }
 
 void Board::createFinishRoom()
@@ -274,6 +318,23 @@ void Board::createFinishRoom()
 	gameBoard[7][21] = new Wall; gameBoard[7][23] = new Wall; gameBoard[8][19] = new Wall;
 	gameBoard[8][21] = new Wall; gameBoard[8][23] = new Wall; gameBoard[9][19] = new Wall;
 	gameBoard[9][23] = new Wall; gameBoard[10][19] = new Wall; gameBoard[10][23] = new Wall;
+
+	// Ice
+	gameBoard[6][16] = new Ice; gameBoard[7][16] = new Ice; gameBoard[8][16] = new Ice;
+	gameBoard[9][15] = new Ice; gameBoard[9][16] = new Ice; gameBoard[9][17] = new Ice;
+	gameBoard[9][20] = new Ice; gameBoard[9][21] = new Ice; gameBoard[9][22] = new Ice;
+	gameBoard[10][15] = new Ice; gameBoard[10][16] = new Ice; gameBoard[10][17] = new Ice;
+	gameBoard[10][20] = new Ice; gameBoard[10][21] = new Ice; gameBoard[10][22] = new Ice;
+
+	// Fire
+	gameBoard[5][18] = new Fire; gameBoard[5][19] = new Fire; gameBoard[5][20] = new Fire;
+	gameBoard[6][18] = new Fire; gameBoard[6][19] = new Fire; gameBoard[6][20] = new Fire;
+
+	// Water
+	gameBoard[8][13] = new Water; gameBoard[8][14] = new Water; gameBoard[8][15] = new Water;
+	gameBoard[8][17] = new Water; gameBoard[8][18] = new Water; gameBoard[9][13] = new Water;
+	gameBoard[9][14] = new Water; gameBoard[9][18] = new Water; gameBoard[10][14] = new Water;
+	gameBoard[10][18] = new Water;
 }
 
 
@@ -318,6 +379,7 @@ void Board::checkForElements()
 		break;
 
 	case WATER:
+		onWater();
 		break;
 	}
 }
@@ -395,6 +457,7 @@ void Board::onIce()
 		printGameBoard();
 		player.playerPtr->displayMessage();
 	}
+	checkForElements();
 }
 
 
