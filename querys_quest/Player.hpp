@@ -24,6 +24,8 @@ private:
 	Direction direction;
 	bool isAlive;
 	int steps;
+	Space* items[6];
+	int numberOfItems;
 
 public:
 	// Constructor and Destructor

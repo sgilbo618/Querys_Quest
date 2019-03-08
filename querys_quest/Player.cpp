@@ -24,6 +24,7 @@ Player::Player()
 	direction = UP;
 	isAlive = true;
 	steps = 0;
+	numberOfItems = 0;
 }
 
 
@@ -178,6 +179,10 @@ void Player::resetSpaceSymbol()
 	switch (type)
 	{
 	case FREE:
+		playerPtr->setSpaceSymbol("  ");
+		break;
+
+	case DOOR:
 		playerPtr->setSpaceSymbol("  ");
 		break;
 		
