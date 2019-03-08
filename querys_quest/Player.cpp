@@ -10,6 +10,7 @@
 *********************************************************************/
 
 #include "Player.hpp"
+#include "Door.hpp"
 #include <iostream>
 
 
@@ -146,9 +147,15 @@ void Player::makeMove(Space * moveSpace)
 bool Player::checkLegalMove(Space* moveSpace)
 {
 	bool isLegal = true;
-	std::string moveSymbol = moveSpace->getSpaceSymbol();
+	SpaceType moveType = moveSpace->getType();
 
-	if (moveSymbol == "# ")
+	if (moveType == WALL)
+	{
+		moveSpace->displayMessage();
+		isLegal = false;
+	}
+
+	if (moveType == DOOR && static_cast<Door*>(moveSpace)->getIsLocked())
 	{
 		moveSpace->displayMessage();
 		isLegal = false;

@@ -15,6 +15,7 @@
 #include "Ice.hpp"
 #include "Fire.hpp"
 #include "Water.hpp"
+#include "Door.hpp"
 
 #include <iostream>
 
@@ -256,6 +257,9 @@ void Board::createMazeRoom()
 
 void Board::createWaterRoom()
 {
+	// Green Door
+	gameBoard[17][13] = new Door("G ");
+	
 	// Walls
 	gameBoard[17][10] = new Wall; gameBoard[17][11] = new Wall; gameBoard[17][12] = new Wall;
 	gameBoard[17][14] = new Wall; gameBoard[17][15] = new Wall; gameBoard[17][16] = new Wall;
@@ -275,6 +279,9 @@ void Board::createWaterRoom()
 
 void Board::createMixRoom()
 {
+	// Blue Door
+	gameBoard[15][18] = new Door("B ");
+	
 	for (int i = 19; i <= 24; i++)
 	{
 		// Walls
@@ -301,6 +308,9 @@ void Board::createMixRoom()
 
 void Board::createFinishRoom()
 {
+	// Red Door
+	gameBoard[11][16] = new Door("R ");
+
 	// Walls
 	gameBoard[0][17] = new Wall; gameBoard[0][23] = new Wall; gameBoard[1][17] = new Wall;
 	gameBoard[1][19] = new Wall; gameBoard[1][20] = new Wall; gameBoard[1][21] = new Wall;
