@@ -20,6 +20,7 @@
 *********************************************************************/
 Space::Space()
 {
+	elementType = NONE;
 	up = nullptr;
 	down = nullptr;
 	left = nullptr;
@@ -42,6 +43,14 @@ Space::~Space()
 SpaceType Space::getType()
 {
 	return type;
+}
+
+/*********************************************************************
+** Description: Getter for elementType.
+*********************************************************************/
+ElementType Space::getElementType()
+{
+	return elementType;
 }
 
 

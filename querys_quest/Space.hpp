@@ -17,11 +17,13 @@
 #include <string>
 
 enum SpaceType {FREE, WALL, DOOR, KEY, ELEMENT, BOOT, QUERY};
+enum ElementType {NONE, ICE, FIRE, WATER};
 
 class Space
 {
 protected:
 	SpaceType type;
+	ElementType elementType;
 	std::string symbol;
 
 	Space* up;
@@ -36,6 +38,7 @@ public:
 
 	// Getters and Setters
 	SpaceType getType();
+	ElementType getElementType();
 
 	std::string getSpaceSymbol();
 	void setSpaceSymbol(std::string symbol);
