@@ -17,6 +17,7 @@
 #include "Water.hpp"
 #include "Door.hpp"
 #include "Key.hpp"
+#include "Boots.hpp"
 
 #include <iostream>
 
@@ -240,6 +241,9 @@ void Board::createMazeRoom()
 {
 	// Red Key
 	gameBoard[22][8] = new Key("r ", REDKEY);
+
+	// Water boots
+	gameBoard[22][4] = new Boots("W ", WATERBOOTS);
 	
 	// Walls
 	gameBoard[13][1] = new Wall; gameBoard[13][2] = new Wall; gameBoard[14][1] = new Wall;
@@ -266,6 +270,9 @@ void Board::createWaterRoom()
 {
 	// Green Door
 	gameBoard[17][13] = new Door("G ");
+
+	// Fire Boots
+	gameBoard[22][15] = new Boots("F ", FIREBOOTS);
 	
 	// Walls
 	gameBoard[17][10] = new Wall; gameBoard[17][11] = new Wall; gameBoard[17][12] = new Wall;
@@ -288,6 +295,9 @@ void Board::createMixRoom()
 {
 	// Blue Door
 	gameBoard[15][18] = new Door("B ");
+
+	// Ice Boots
+	gameBoard[24][22] = new Boots("I", ICEBOOTS);
 	
 	for (int i = 19; i <= 24; i++)
 	{
@@ -522,7 +532,9 @@ void Board::checkForItems()
 		break;
 
 	case BOOTS:
-		
+		player.items[player.numberOfItems] = player.playerPtr;
+		player.numberOfItems++;
+		player.playerPtr->displayMessage();
 		break;
 	}
 }

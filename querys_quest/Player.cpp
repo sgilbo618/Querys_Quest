@@ -195,6 +195,11 @@ void Player::resetSpaceSymbol()
 
 	case KEY:
 		playerPtr->setSpaceSymbol("  ");
+		break;
+
+	case BOOTS:
+		playerPtr->setSpaceSymbol("  ");
+		break;
 		
 	case ELEMENT:
 	{
