@@ -20,6 +20,7 @@
 Player::Player()
 {
 	playerPtr = nullptr;
+	direction = UP;
 	isAlive = true;
 	steps = 0;
 }
@@ -33,6 +34,11 @@ Player::~Player()
 {
 }
 
+
+Direction Player::getDirection()
+{
+	return direction;
+}
 
 /*********************************************************************
 ** Function: checkIsAlive()
@@ -79,21 +85,25 @@ void Player::movePlayer()
 	if (move == "i" && playerPtr->getUp() != nullptr) // && is for boundry checking
 	{
 		makeMove(playerPtr->getUp());
+		direction = UP;
 	}
 	// Down
 	else if (move == "k" && playerPtr->getDown() != nullptr)
 	{
 		makeMove(playerPtr->getDown());
+		direction = DOWN;
 	}
 	// Left
 	else if (move == "j" && playerPtr->getLeft() != nullptr)
 	{
 		makeMove(playerPtr->getLeft());
+		direction = LEFT;
 	}
 	// Right
 	else if (move == "l" && playerPtr->getRight() != nullptr)
 	{
 		makeMove(playerPtr->getRight());
+		direction = RIGHT;
 	}
 	else
 	{
@@ -156,11 +166,31 @@ bool Player::checkLegalMove(Space* moveSpace)
 void Player::resetSpaceSymbol()
 {
 	SpaceType type = playerPtr->getType();
+	ElementType elementType = playerPtr->getElementType();
 
 	switch (type)
 	{
 	case FREE:
 		playerPtr->setSpaceSymbol("  ");
 		break;
+		
+	case ELEMENT:
+	{
+		switch (elementType)
+		{
+		case ICE:
+			playerPtr->setSpaceSymbol("/ ");
+			break;
+
+		case FIRE:
+			playerPtr->setSpaceSymbol("* ");
+			break;
+
+		case WATER:
+			playerPtr->setSpaceSymbol("~ ");
+			break;
+		}
+		break;
+	}
 	}
 }

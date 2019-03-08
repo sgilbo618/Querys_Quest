@@ -14,12 +14,14 @@
 
 #include "Space.hpp"
 
-#define MAX_STEPS 10
+#define MAX_STEPS 1000
+enum Direction {UP, DOWN, LEFT, RIGHT};
 
 class Player
 {
 private:
 	Space* playerPtr;
+	Direction direction;
 	bool isAlive;
 	int steps;
 
@@ -28,6 +30,7 @@ public:
 	Player();
 	~Player();
 
+	Direction getDirection();
 	bool checkIsAlive();
 
 	// Move methods
@@ -35,6 +38,8 @@ public:
 	void makeMove(Space* moveSpace);
 	bool checkLegalMove(Space* moveSpace);
 	void resetSpaceSymbol();
+
+	// 
 
 	friend class Board;
 };
