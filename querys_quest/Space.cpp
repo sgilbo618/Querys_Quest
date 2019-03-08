@@ -20,7 +20,8 @@
 *********************************************************************/
 Space::Space()
 {
-	elementType = NONE;
+	elementType = NON;
+	itemType = NONE;
 	up = nullptr;
 	down = nullptr;
 	left = nullptr;

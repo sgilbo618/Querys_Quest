@@ -17,13 +17,15 @@
 #include <string>
 
 enum SpaceType {FREE, WALL, DOOR, KEY, ELEMENT, BOOT, QUERY};
-enum ElementType {NONE, ICE, FIRE, WATER};
+enum ElementType {NON, ICE, FIRE, WATER};
+enum ItemType {NONE, REDKEY, BLUEKEY, GREENKEY, WATERBOOTS, FIREBOOTS, ICEBOOTS};
 
 class Space
 {
 protected:
 	SpaceType type;
 	ElementType elementType;
+	ItemType itemType;
 	std::string symbol;
 
 	Space* up;
