@@ -21,6 +21,7 @@ Ice::Ice()
 	type = ELEMENT;
 	elementType = ICE;
 	symbol = "/ ";
+	element = "ice";
 }
 
 
@@ -34,11 +35,19 @@ Ice::~Ice()
 
 
 /*********************************************************************
+** Description: Getter for element.
+*********************************************************************/
+std::string Ice::getElement()
+{
+	return element;
+}
+
+/*********************************************************************
 ** Function: displayMessage()
 ** Description: Displays message to user if player attempts to go
 **				onto a Ice space.
 *********************************************************************/
 void Ice::displayMessage()
 {
-	std::cout << "Query is on ice - careful it is slipery!" << std::endl;
+	std::cout << "Query is on ice without ice boots. Ice makes him slide until he gets a non-ice space" << std::endl;
 }

@@ -11,14 +11,19 @@
 #ifndef ICE_HPP
 #define ICE_HPP
 
-#include "Element.hpp"
+#include "Space.hpp"
 
 
-class Ice : public Element
+class Ice : public Space
 {
+private:
+	std::string element;
+
 public:
 	Ice();
 	~Ice();
+
+	std::string getElement();
 	virtual void displayMessage();
 };
 
