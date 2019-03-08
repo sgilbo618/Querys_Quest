@@ -419,7 +419,7 @@ void Board::onIce()
 		switch (direction)
 		{
 		case UP:
-			if (player.playerPtr->getUp() != nullptr)
+			if (player.playerPtr->getUp() != nullptr && player.playerPtr->getUp()->getType() != WALL)
 			{
 				player.resetSpaceSymbol();
 				player.playerPtr = player.playerPtr->getUp();
@@ -432,7 +432,7 @@ void Board::onIce()
 			}
 			break;
 		case DOWN:
-			if (player.playerPtr->getDown() != nullptr)
+			if (player.playerPtr->getDown() != nullptr && player.playerPtr->getDown()->getType() != WALL)
 			{
 				player.resetSpaceSymbol();
 				player.playerPtr = player.playerPtr->getDown();
@@ -445,7 +445,7 @@ void Board::onIce()
 			}
 			break;
 		case LEFT:
-			if (player.playerPtr->getLeft() != nullptr)
+			if (player.playerPtr->getLeft() != nullptr && player.playerPtr->getLeft()->getType() != WALL)
 			{
 				player.resetSpaceSymbol();
 				player.playerPtr = player.playerPtr->getLeft();
@@ -458,7 +458,7 @@ void Board::onIce()
 			}
 			break;
 		case RIGHT:
-			if (player.playerPtr->getRight() != nullptr)
+			if (player.playerPtr->getRight() != nullptr && player.playerPtr->getRight()->getType() != WALL)
 			{
 				player.resetSpaceSymbol();
 				player.playerPtr = player.playerPtr->getRight();
