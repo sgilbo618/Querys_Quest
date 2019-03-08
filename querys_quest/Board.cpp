@@ -13,6 +13,7 @@
 #include "Wall.hpp"
 #include "Free.hpp"
 #include "Ice.hpp"
+#include "Fire.hpp"
 
 #include <iostream>
 
@@ -180,6 +181,7 @@ void Board::createMainRoom()
 	gameBoard[17][10] = new Wall; gameBoard[17][11] = new Wall; gameBoard[17][12] = new Wall;
 	gameBoard[17][14] = new Wall; gameBoard[17][15] = new Wall; gameBoard[17][16] = new Wall;
 	gameBoard[17][17] = new Wall; gameBoard[17][18] = new Wall; 
+
 }
 
 void Board::createIceRoom()
@@ -194,16 +196,27 @@ void Board::createIceRoom()
 	gameBoard[11][7] = new Wall; gameBoard[11][10] = new Wall; gameBoard[11][11] = new Wall;
 	gameBoard[11][12] = new Wall; 
 
+	// Free
+	gameBoard[1][3] = new Free; gameBoard[1][8] = new Free; gameBoard[2][1] = new Free;
+	gameBoard[2][6] = new Free; gameBoard[4][7] = new Free; gameBoard[4][10] = new Free;
+	gameBoard[5][3] = new Free; gameBoard[5][6] = new Free; gameBoard[7][4] = new Free;
+	gameBoard[7][9] = new Free; gameBoard[9][1] = new Free; gameBoard[9][7] = new Free;
+	gameBoard[10][4] = new Free; gameBoard[10][10] = new Free;
+
 	// Ice
-	for (int i = 0; i <= 9; i++)
+	for (int i = 1; i <= 9; i++)
 	{
-		for (int j = 0; j <= 10; j++)
+		for (int j = 1; j <= 10; j++)
 		{
-			gameBoard[i][j] = new Ice;
+			if (gameBoard[i][j] == nullptr)
+			{
+				gameBoard[i][j] = new Ice;
+			}
 		}
 	}
 	gameBoard[10][5] = new Ice; gameBoard[10][6] = new Ice; gameBoard[10][7] = new Ice;
 	gameBoard[10][8] = new Ice; gameBoard[10][9] = new Ice;
+
 }
 
 void Board::createMazeRoom()
@@ -301,6 +314,7 @@ void Board::checkForElements()
 		break;
 
 	case FIRE:
+		onFire();
 		break;
 
 	case WATER:
@@ -381,4 +395,16 @@ void Board::onIce()
 		printGameBoard();
 		player.playerPtr->displayMessage();
 	}
+}
+
+
+/*********************************************************************
+** Function: onFire()
+** Description: Checks if player has fire boots. If it does not, sets
+**				isAlive to false. Displays fire message.
+*********************************************************************/
+void Board::onFire()
+{
+	player.isAlive = false;
+	player.playerPtr->displayMessage();
 }

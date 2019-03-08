@@ -47,6 +47,7 @@ public:
 	// Element Methods
 	void checkForElements();
 	void onIce();
+	void onFire();
 
 };
 
