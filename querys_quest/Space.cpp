@@ -39,19 +39,21 @@ Space::~Space()
 
 
 /*********************************************************************
-** Description: Getter for type.
+** Description: Getters for types.
 *********************************************************************/
 SpaceType Space::getType()
 {
 	return type;
 }
 
-/*********************************************************************
-** Description: Getter for elementType.
-*********************************************************************/
 ElementType Space::getElementType()
 {
 	return elementType;
+}
+
+ItemType Space::getItemType()
+{
+	return itemType;
 }
 
 

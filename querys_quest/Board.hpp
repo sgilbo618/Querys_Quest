@@ -50,6 +50,9 @@ public:
 	void onFire();
 	void onWater();
 
+	// Item Methods
+	void checkForItems();
+	void unlockDoor();
 };
 
 #endif // !BOARD_HPP

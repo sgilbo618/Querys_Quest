@@ -76,15 +76,12 @@ void Board::runGame()
 {
 	printGameBoard();
 
-	//int counter = 200;
-
 	while (player.checkIsAlive())
 	{
 		player.movePlayer();
 		printGameBoard();
 		checkForElements();
-
-		//counter--;
+		checkForItems();
 	}
 }
 
@@ -502,4 +499,48 @@ void Board::onWater()
 {
 	player.isAlive = false;
 	player.playerPtr->displayMessage();
+}
+
+
+/*********************************************************************
+** Function: checkForItems()
+** Description: Determines if the current space is an item. If it is
+**				the item is added to the item array.
+*********************************************************************/
+void Board::checkForItems()
+{
+	SpaceType type = player.playerPtr->getType();
+	ItemType itemType = player.playerPtr->getItemType();
+
+	switch (type)
+	{
+	case KEY:
+		unlockDoor();
+		player.items[player.numberOfItems] = player.playerPtr;
+		player.numberOfItems++;
+		player.playerPtr->displayMessage();
+		break;
+
+	case BOOTS:
+		
+		break;
+	}
+}
+
+void Board::unlockDoor()
+{
+	switch (player.playerPtr->getItemType())
+	{
+	case REDKEY:
+		static_cast<Door*>(gameBoard[11][16])->setIsLocked(false);
+		break;
+
+	case BLUEKEY:
+		static_cast<Door*>(gameBoard[15][18])->setIsLocked(false);
+		break;
+
+	case GREENKEY:
+		static_cast<Door*>(gameBoard[17][13])->setIsLocked(false);
+		break;
+	}
 }

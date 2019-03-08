@@ -156,10 +156,17 @@ bool Player::checkLegalMove(Space* moveSpace)
 		isLegal = false;
 	}
 
-	if (moveType == DOOR && static_cast<Door*>(moveSpace)->getIsLocked())
+	if (moveType == DOOR)
 	{
-		moveSpace->displayMessage();
-		isLegal = false;
+		if (static_cast<Door*>(moveSpace)->getIsLocked())
+		{
+			moveSpace->displayMessage();
+			isLegal = false;
+		}
+		else
+		{
+			moveSpace->displayMessage();
+		}
 	}
 
 	return isLegal;
@@ -185,6 +192,9 @@ void Player::resetSpaceSymbol()
 	case DOOR:
 		playerPtr->setSpaceSymbol("  ");
 		break;
+
+	case KEY:
+		playerPtr->setSpaceSymbol("  ");
 		
 	case ELEMENT:
 	{

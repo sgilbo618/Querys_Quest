@@ -16,7 +16,7 @@
 
 #include <string>
 
-enum SpaceType {FREE, WALL, DOOR, KEY, ELEMENT, BOOT, QUERY};
+enum SpaceType {FREE, WALL, DOOR, KEY, ELEMENT, BOOTS, QUERY};
 enum ElementType {NON, ICE, FIRE, WATER};
 enum ItemType {NONE, REDKEY, BLUEKEY, GREENKEY, WATERBOOTS, FIREBOOTS, ICEBOOTS};
 
@@ -41,6 +41,7 @@ public:
 	// Getters and Setters
 	SpaceType getType();
 	ElementType getElementType();
+	ItemType getItemType();
 
 	std::string getSpaceSymbol();
 	void setSpaceSymbol(std::string symbol);

@@ -61,5 +61,12 @@ void Door::setIsLocked(bool isLocked)
 *********************************************************************/
 void Door::displayMessage()
 {
-	std::cout << "This door is locked - can't go in here" << std::endl;
+	if (isLocked)
+	{
+		std::cout << "This door is locked - can't go in here" << std::endl;
+	}
+	else
+	{
+		std::cout << "Query used a key to unlock the door!" << std::endl;
+	}
 }
