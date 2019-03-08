@@ -48,6 +48,7 @@ public:
 	void checkForElements();
 	void onIce();
 	void onFire();
+	void onWater();
 
 };
 

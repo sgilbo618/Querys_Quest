@@ -408,3 +408,15 @@ void Board::onFire()
 	player.isAlive = false;
 	player.playerPtr->displayMessage();
 }
+
+
+/*********************************************************************
+** Function: onWater()
+** Description: Checks if player has water boots. If it does not, sets
+**				isAlive to false. Displays water message.
+*********************************************************************/
+void Board::onWater()
+{
+	player.isAlive = false;
+	player.playerPtr->displayMessage();
+}

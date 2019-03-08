@@ -36,6 +36,12 @@
     <ClCompile Include="..\..\..\Final_Project_Query%27s_Quest\Querys_Quest\querys_quest\Ice.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Final_Project_Query%27s_Quest\Querys_Quest\querys_quest\Fire.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Final_Project_Query%27s_Quest\Querys_Quest\querys_quest\Water.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Final_Project_Query%27s_Quest\Querys_Quest\querys_quest\Space.hpp">
@@ -54,6 +60,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Final_Project_Query%27s_Quest\Querys_Quest\querys_quest\Ice.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Final_Project_Query%27s_Quest\Querys_Quest\querys_quest\Fire.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Final_Project_Query%27s_Quest\Querys_Quest\querys_quest\Water.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

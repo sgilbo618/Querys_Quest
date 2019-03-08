@@ -1,34 +1,34 @@
 /*********************************************************************
 ** Program name: Query's Quest
-** File: Ice.cpp
+** File: Water.cpp
 ** Author: Samantha Guilbeault
 ** Date: 2-26-2019
-** Description: Contains the implementation of the class Ice which
-**				is a subclass of Space and represents Ice tiles in
+** Description: Contains the implementation of the class Water which
+**				is a subclass of Space and represents Water tiles in
 **				the game board.
 *********************************************************************/
 
-#include "Ice.hpp"
+#include "Water.hpp"
 #include <iostream>
 
 
 /*********************************************************************
-** Function: Ice()
-** Description: Default constructor for Ice object.
+** Function: Water()
+** Description: Default constructor for Water object.
 *********************************************************************/
-Ice::Ice()
+Water::Water()
 {
 	type = ELEMENT;
-	elementType = ICE;
-	symbol = "/ ";
+	elementType = WATER;
+	symbol = "~ ";
 }
 
 
 /*********************************************************************
-** Function: ~Ice()
-** Description: Destructor for Ice object.
+** Function: ~Water()
+** Description: Destructor for Water object.
 *********************************************************************/
-Ice::~Ice()
+Water::~Water()
 {
 }
 
@@ -36,9 +36,9 @@ Ice::~Ice()
 /*********************************************************************
 ** Function: displayMessage()
 ** Description: Displays message to user if player attempts to go
-**				onto a Ice space.
+**				onto a Water space.
 *********************************************************************/
-void Ice::displayMessage()
+void Water::displayMessage()
 {
-	std::cout << "Query is on ice without ice boots. Ice makes him slide until he gets a non-ice space" << std::endl;
+	std::cout << "Query is on Water without Water boots! - He dead" << std::endl;
 }
