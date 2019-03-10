@@ -61,12 +61,43 @@ void Door::setIsLocked(bool isLocked)
 *********************************************************************/
 void Door::displayMessage()
 {
+	
 	if (isLocked)
 	{
-		std::cout << "This door is locked - can't go in here" << std::endl;
+		if (symbol == "R ")
+		{
+			std::cout << "This door is locked - Query needs the red key to go in here." << std::endl;
+		}
+		else if (symbol == "G ")
+		{
+			std::cout << "This door is locked - Query needs the green key to go in here." << std::endl;
+		}
+		else if (symbol == "B ")
+		{
+			std::cout << "This door is locked - Query needs the blue key to go in here." << std::endl;
+		}
+		else if (symbol == "! ")
+		{
+			std::cout << "The final door is locked - Query needs to collect all of the queries to win." << std::endl;
+		}
 	}
 	else
 	{
-		std::cout << "Query used a key to unlock the door!" << std::endl;
+		if (symbol == "R ")
+		{
+			std::cout << "Query used the red key to unlock the red door!" << std::endl;
+		}
+		else if (symbol == "G ")
+		{
+			std::cout << "Query used the green key to unlock the green door!" << std::endl;
+		}
+		else if (symbol == "B ")
+		{
+			std::cout << "Query used the blue key to unlock the blue door!" << std::endl;
+		}
+		else if (symbol == "! ")
+		{
+			std::cout << "Query completed level 1 of Query's Quest! Congrats!!" << std::endl;
+		}
 	}
 }

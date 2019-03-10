@@ -54,6 +54,8 @@ public:
 	void checkForItems();
 	void unlockDoor();
 	void checkForQueries();
+
+	bool checkForWin();
 };
 
 #endif // !BOARD_HPP

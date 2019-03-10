@@ -15,6 +15,7 @@
 #include "Space.hpp"
 
 #define MAX_STEPS 1000
+#define QUERIES_NEEDED 1
 enum Direction {UP, DOWN, LEFT, RIGHT};
 
 class Player

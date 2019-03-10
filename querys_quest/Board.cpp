@@ -50,7 +50,8 @@ Board::Board()
 	createGameBoard();
 
 	// Build player
-	player.playerPtr = gameBoard[15][10];
+	//player.playerPtr = gameBoard[15][15];
+	player.playerPtr = gameBoard[5][24];
 	player.playerPtr->setSpaceSymbol("Q ");
 }
 
@@ -78,7 +79,7 @@ void Board::runGame()
 {
 	printGameBoard();
 
-	while (player.checkIsAlive())
+	while (player.checkIsAlive() && !checkForWin())
 	{
 		player.movePlayer();
 		printGameBoard();
@@ -341,7 +342,7 @@ void Board::createMixRoom()
 void Board::createFinishRoom()
 {
 	// Final Door
-	//gameBoard[0][24] = new Door("! ");
+	gameBoard[0][24] = new Door("! ");
 
 	// Red Door
 	gameBoard[11][16] = new Door("R ");
@@ -619,4 +620,19 @@ void Board::checkForQueries()
 		player.queries++;
 		player.playerPtr->displayMessage();
 	}
+
+	if (player.queries >= QUERIES_NEEDED)
+	{
+		static_cast<Door*>(gameBoard[0][24])->setIsLocked(false);
+	}
+}
+
+bool Board::checkForWin()
+{
+	if (player.playerPtr->getType() == DOOR && player.queries >= QUERIES_NEEDED)
+	{
+		return true;
+	}
+
+	return false;
 }
