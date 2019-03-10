@@ -26,6 +26,7 @@ private:
 	int steps;
 	Space* items[6];
 	int numberOfItems;
+	int queries;
 
 public:
 	// Constructor and Destructor
@@ -41,7 +42,8 @@ public:
 	bool checkLegalMove(Space* moveSpace);
 	void resetSpaceSymbol();
 
-	// 
+	// Item methods
+	bool hasThisItem(ItemType item);
 
 	friend class Board;
 };

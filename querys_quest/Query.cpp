@@ -1,33 +1,33 @@
 /*********************************************************************
 ** Program name: Query's Quest
-** File: Free.cpp
+** File: Query.cpp
 ** Author: Samantha Guilbeault
 ** Date: 2-26-2019
-** Description: Contains the implementation of the class Free which
-**				is a subclass of Space and represents open tiles on
+** Description: Contains the implementation of the class Query which
+**				is a subclass of Space and represents query tiles on
 **				the game board.
 *********************************************************************/
 
-#include "Free.hpp"
+#include "Query.hpp"
 #include <iostream>
 
 
 /*********************************************************************
-** Function: Free()
-** Description: Default constructor for Free object.
+** Function: Query()
+** Description: Default constructor for Query object.
 *********************************************************************/
-Free::Free()
+Query::Query()
 {
-	type = FREE;
-	symbol = "  ";
+	type = QUERY;
+	symbol = "? ";
 }
 
 
 /*********************************************************************
-** Function: ~Free()
-** Description: Destructor for Free object.
+** Function: ~Query()
+** Description: Destructor for Query object.
 *********************************************************************/
-Free::~Free()
+Query::~Query()
 {
 }
 
@@ -36,7 +36,7 @@ Free::~Free()
 ** Function: displayMessage()
 ** Description: Displays the direction the Player moved.
 *********************************************************************/
-void Free::displayMessage()
+void Query::displayMessage()
 {
-	std::cout << "Query moved" << std::endl;
+	std::cout << "Query found a query!" << std::endl;
 }

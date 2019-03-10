@@ -1,25 +1,25 @@
 /*********************************************************************
 ** Program name: Query's Quest
-** File: Free.hpp
+** File: Query.hpp
 ** Author: Samantha Guilbeault
 ** Date: 2-26-2019
-** Description: Contains the declaration of the class Free which
+** Description: Contains the declaration of the class Query which
 **				is a subclass of Space and represents open tiles on
 **				the game board.
 *********************************************************************/
 
-#ifndef FREE_HPP
-#define FREE_HPP
+#ifndef QUERY_HPP
+#define QUERY_HPP
 
 #include "Space.hpp"
 
 
-class Free : public Space
+class Query : public Space
 {
 public:
-	Free();
-	~Free();
+	Query();
+	~Query();
 	virtual void displayMessage();
 };
 
-#endif // !FREE_HPP
+#endif // !QUERY_HPP

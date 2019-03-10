@@ -53,6 +53,7 @@ public:
 	// Item Methods
 	void checkForItems();
 	void unlockDoor();
+	void checkForQueries();
 };
 
 #endif // !BOARD_HPP

@@ -25,6 +25,7 @@ Player::Player()
 	isAlive = true;
 	steps = 0;
 	numberOfItems = 0;
+	queries = 0;
 }
 
 
@@ -200,6 +201,10 @@ void Player::resetSpaceSymbol()
 	case BOOTS:
 		playerPtr->setSpaceSymbol("  ");
 		break;
+
+	case QUERY:
+		playerPtr->setSpaceSymbol("  ");
+		break;
 		
 	case ELEMENT:
 	{
@@ -220,4 +225,23 @@ void Player::resetSpaceSymbol()
 		break;
 	}
 	}
+}
+
+
+/*********************************************************************
+** Function: hasThisItem(ItemType)
+** Description: Takes in an ItemType and loops through the item array
+**				to search for it. Returns true if the item is found,
+**				false if it is not found.
+*********************************************************************/
+bool Player::hasThisItem(ItemType item)
+{
+	for (int i = 0; i < numberOfItems; i++)
+	{
+		if (items[i]->getItemType() == item)
+		{
+			return true;
+		}
+	}
+	return false;
 }

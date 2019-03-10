@@ -18,6 +18,7 @@
 #include "Door.hpp"
 #include "Key.hpp"
 #include "Boots.hpp"
+#include "Query.hpp"
 
 #include <iostream>
 
@@ -83,6 +84,7 @@ void Board::runGame()
 		printGameBoard();
 		checkForElements();
 		checkForItems();
+		checkForQueries();
 	}
 }
 
@@ -192,6 +194,9 @@ void Board::createIceRoom()
 {
 	// Green Key
 	gameBoard[1][5] = new Key("g ", GREENKEY);
+
+	// Queries
+	gameBoard[10][10] = new Query; // gameBoard[][] = new Query; gameBoard[][] = new Query;
 	
 	// Walls
 	gameBoard[0][12] = new Wall; gameBoard[1][12] = new Wall; gameBoard[2][12] = new Wall;
@@ -208,7 +213,7 @@ void Board::createIceRoom()
 	gameBoard[2][6] = new Free; gameBoard[4][7] = new Free; gameBoard[4][10] = new Free;
 	gameBoard[5][3] = new Free; gameBoard[5][6] = new Free; gameBoard[7][4] = new Free;
 	gameBoard[7][9] = new Free; gameBoard[9][1] = new Free; gameBoard[9][7] = new Free;
-	gameBoard[10][4] = new Free; gameBoard[10][10] = new Free;
+	gameBoard[10][4] = new Free;
 
 	// Water
 	for (int i = 0; i <= 11; i++)
@@ -244,6 +249,9 @@ void Board::createMazeRoom()
 
 	// Water boots
 	gameBoard[22][4] = new Boots("W ", WATERBOOTS);
+
+	// Queries
+	gameBoard[13][3] = new Query; gameBoard[17][2] = new Query; gameBoard[24][8] = new Query;
 	
 	// Walls
 	gameBoard[13][1] = new Wall; gameBoard[13][2] = new Wall; gameBoard[14][1] = new Wall;
@@ -273,6 +281,9 @@ void Board::createWaterRoom()
 
 	// Fire Boots
 	gameBoard[22][15] = new Boots("F ", FIREBOOTS);
+
+	// Queries
+	gameBoard[18][17] = new Query; gameBoard[24][17] = new Query; // gameBoard[][] = new Query;
 	
 	// Walls
 	gameBoard[17][10] = new Wall; gameBoard[17][11] = new Wall; gameBoard[17][12] = new Wall;
@@ -297,10 +308,14 @@ void Board::createMixRoom()
 	gameBoard[15][18] = new Door("B ");
 
 	// Ice Boots
-	gameBoard[24][22] = new Boots("I", ICEBOOTS);
+	gameBoard[24][22] = new Boots("I ", ICEBOOTS);
 	
 	for (int i = 19; i <= 24; i++)
 	{
+		// Queries
+		gameBoard[20][i] = new Query;
+		gameBoard[21][i] = new Query;
+		
 		// Walls
 		gameBoard[11][i] = new Wall;
 
@@ -325,8 +340,15 @@ void Board::createMixRoom()
 
 void Board::createFinishRoom()
 {
+	// Final Door
+	//gameBoard[0][24] = new Door("! ");
+
 	// Red Door
 	gameBoard[11][16] = new Door("R ");
+
+	// Queries
+	gameBoard[0][13] = new Query; gameBoard[2][20] = new Query; gameBoard[3][13] = new Query;
+	gameBoard[10][13] = new Query; gameBoard[10][24] = new Query;
 
 	// Walls
 	gameBoard[0][17] = new Wall; gameBoard[0][23] = new Wall; gameBoard[1][17] = new Wall;
@@ -420,71 +442,78 @@ void Board::checkForElements()
 *********************************************************************/
 void Board::onIce()
 {
-	// Get direction
-	Direction direction = player.getDirection();
-	std::cout << direction << std::endl;
-	
-	while (player.playerPtr->getElementType() == ICE)
-	{	
-		switch (direction)
-		{
-		case UP:
-			if (player.playerPtr->getUp() != nullptr && player.playerPtr->getUp()->getType() != WALL)
-			{
-				player.resetSpaceSymbol();
-				player.playerPtr = player.playerPtr->getUp();
-				player.playerPtr->setSpaceSymbol("Q ");
-				//player.makeMove(player.playerPtr->getUp());
-			}
-			else
-			{
-				direction = DOWN;
-			}
-			break;
-		case DOWN:
-			if (player.playerPtr->getDown() != nullptr && player.playerPtr->getDown()->getType() != WALL)
-			{
-				player.resetSpaceSymbol();
-				player.playerPtr = player.playerPtr->getDown();
-				player.playerPtr->setSpaceSymbol("Q ");
-				//player.makeMove(player.playerPtr->getDown());
-			}
-			else
-			{
-				direction = UP;
-			}
-			break;
-		case LEFT:
-			if (player.playerPtr->getLeft() != nullptr && player.playerPtr->getLeft()->getType() != WALL)
-			{
-				player.resetSpaceSymbol();
-				player.playerPtr = player.playerPtr->getLeft();
-				player.playerPtr->setSpaceSymbol("Q ");
-				//player.makeMove(player.playerPtr->getUp());
-			}
-			else
-			{
-				direction = RIGHT;
-			}
-			break;
-		case RIGHT:
-			if (player.playerPtr->getRight() != nullptr && player.playerPtr->getRight()->getType() != WALL)
-			{
-				player.resetSpaceSymbol();
-				player.playerPtr = player.playerPtr->getRight();
-				player.playerPtr->setSpaceSymbol("Q ");
-				//player.makeMove(player.playerPtr->getUp());
-			}
-			else
-			{
-				direction = LEFT;
-			}
-			break;
-		}
-		printGameBoard();
-		player.playerPtr->displayMessage();
+	if (player.hasThisItem(ICEBOOTS))
+	{
+		std::cout << "Query has Ice Boots so he can walk on ice" << std::endl;
 	}
-	checkForElements();
+	else
+	{
+		// Get direction
+		Direction direction = player.getDirection();
+		std::cout << direction << std::endl;
+
+		while (player.playerPtr->getElementType() == ICE)
+		{
+			switch (direction)
+			{
+			case UP:
+				if (player.playerPtr->getUp() != nullptr && player.playerPtr->getUp()->getType() != WALL)
+				{
+					player.resetSpaceSymbol();
+					player.playerPtr = player.playerPtr->getUp();
+					player.playerPtr->setSpaceSymbol("Q ");
+					//player.makeMove(player.playerPtr->getUp());
+				}
+				else
+				{
+					direction = DOWN;
+				}
+				break;
+			case DOWN:
+				if (player.playerPtr->getDown() != nullptr && player.playerPtr->getDown()->getType() != WALL)
+				{
+					player.resetSpaceSymbol();
+					player.playerPtr = player.playerPtr->getDown();
+					player.playerPtr->setSpaceSymbol("Q ");
+					//player.makeMove(player.playerPtr->getDown());
+				}
+				else
+				{
+					direction = UP;
+				}
+				break;
+			case LEFT:
+				if (player.playerPtr->getLeft() != nullptr && player.playerPtr->getLeft()->getType() != WALL)
+				{
+					player.resetSpaceSymbol();
+					player.playerPtr = player.playerPtr->getLeft();
+					player.playerPtr->setSpaceSymbol("Q ");
+					//player.makeMove(player.playerPtr->getUp());
+				}
+				else
+				{
+					direction = RIGHT;
+				}
+				break;
+			case RIGHT:
+				if (player.playerPtr->getRight() != nullptr && player.playerPtr->getRight()->getType() != WALL)
+				{
+					player.resetSpaceSymbol();
+					player.playerPtr = player.playerPtr->getRight();
+					player.playerPtr->setSpaceSymbol("Q ");
+					//player.makeMove(player.playerPtr->getUp());
+				}
+				else
+				{
+					direction = LEFT;
+				}
+				break;
+			}
+			printGameBoard();
+			player.playerPtr->displayMessage();
+		}
+		checkForElements();
+	}
 }
 
 
@@ -495,8 +524,15 @@ void Board::onIce()
 *********************************************************************/
 void Board::onFire()
 {
-	player.isAlive = false;
-	player.playerPtr->displayMessage();
+	if (player.hasThisItem(FIREBOOTS))
+	{
+		std::cout << "Query has Fire Boots so he can walk on fire" << std::endl;
+	}
+	else
+	{
+		player.isAlive = false;
+		player.playerPtr->displayMessage();
+	}
 }
 
 
@@ -507,8 +543,15 @@ void Board::onFire()
 *********************************************************************/
 void Board::onWater()
 {
-	player.isAlive = false;
-	player.playerPtr->displayMessage();
+	if (player.hasThisItem(WATERBOOTS))
+	{
+		std::cout << "Query has Water Boots so he can walk on water" << std::endl;
+	}
+	else
+	{
+		player.isAlive = false;
+		player.playerPtr->displayMessage();
+	}
 }
 
 
@@ -539,6 +582,12 @@ void Board::checkForItems()
 	}
 }
 
+
+/*********************************************************************
+** Function: unlockDoor()
+** Description: When a key is found this function gets the type of key
+**				and unlocks the corrisponding door.
+*********************************************************************/
 void Board::unlockDoor()
 {
 	switch (player.playerPtr->getItemType())
@@ -554,5 +603,20 @@ void Board::unlockDoor()
 	case GREENKEY:
 		static_cast<Door*>(gameBoard[17][13])->setIsLocked(false);
 		break;
+	}
+}
+
+
+/*********************************************************************
+** Function: checkForQueries()
+** Description: Gets the space type and if it is a query, one is added
+**				to the total number of queries found.
+*********************************************************************/
+void Board::checkForQueries()
+{
+	if (player.playerPtr->getType() == QUERY)
+	{
+		player.queries++;
+		player.playerPtr->displayMessage();
 	}
 }

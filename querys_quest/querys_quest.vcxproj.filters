@@ -51,6 +51,9 @@
     <ClCompile Include="..\..\..\Final_Project_Query%27s_Quest\Querys_Quest\querys_quest\Boots.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Final_Project_Query%27s_Quest\Querys_Quest\querys_quest\Query.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Final_Project_Query%27s_Quest\Querys_Quest\querys_quest\Space.hpp">
@@ -84,6 +87,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Final_Project_Query%27s_Quest\Querys_Quest\querys_quest\Boots.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Final_Project_Query%27s_Quest\Querys_Quest\querys_quest\Query.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

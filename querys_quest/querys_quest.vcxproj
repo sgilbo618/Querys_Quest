@@ -127,6 +127,7 @@
     <ClCompile Include="..\..\..\Final_Project_Query%27s_Quest\Querys_Quest\querys_quest\Key.cpp" />
     <ClCompile Include="..\..\..\Final_Project_Query%27s_Quest\Querys_Quest\querys_quest\main.cpp" />
     <ClCompile Include="..\..\..\Final_Project_Query%27s_Quest\Querys_Quest\querys_quest\Player.cpp" />
+    <ClCompile Include="..\..\..\Final_Project_Query%27s_Quest\Querys_Quest\querys_quest\Query.cpp" />
     <ClCompile Include="..\..\..\Final_Project_Query%27s_Quest\Querys_Quest\querys_quest\Space.cpp" />
     <ClCompile Include="..\..\..\Final_Project_Query%27s_Quest\Querys_Quest\querys_quest\Water.cpp" />
     <ClCompile Include="Wall.cpp" />
@@ -140,6 +141,7 @@
     <ClInclude Include="..\..\..\Final_Project_Query%27s_Quest\Querys_Quest\querys_quest\Ice.hpp" />
     <ClInclude Include="..\..\..\Final_Project_Query%27s_Quest\Querys_Quest\querys_quest\Key.hpp" />
     <ClInclude Include="..\..\..\Final_Project_Query%27s_Quest\Querys_Quest\querys_quest\Player.hpp" />
+    <ClInclude Include="..\..\..\Final_Project_Query%27s_Quest\Querys_Quest\querys_quest\Query.hpp" />
     <ClInclude Include="..\..\..\Final_Project_Query%27s_Quest\Querys_Quest\querys_quest\Space.hpp" />
     <ClInclude Include="..\..\..\Final_Project_Query%27s_Quest\Querys_Quest\querys_quest\Water.hpp" />
     <ClInclude Include="Wall.hpp" />
