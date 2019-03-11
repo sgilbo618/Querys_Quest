@@ -50,8 +50,8 @@ Board::Board()
 	createGameBoard();
 
 	// Build player
-	//player.playerPtr = gameBoard[15][15];
-	player.playerPtr = gameBoard[5][24];
+	player.playerPtr = gameBoard[15][15];
+	//player.playerPtr = gameBoard[5][24];
 	player.playerPtr->setSpaceSymbol("Q ");
 }
 
@@ -77,15 +77,16 @@ Board::~Board()
 *********************************************************************/
 void Board::runGame()
 {
-	printGameBoard();
+	//printGameBoard();
 
 	while (player.checkIsAlive() && !checkForWin())
 	{
-		player.movePlayer();
 		printGameBoard();
+		player.movePlayer();
 		checkForElements();
 		checkForItems();
 		checkForQueries();
+		//printGameBoard();
 	}
 }
 
@@ -96,6 +97,9 @@ void Board::runGame()
 *********************************************************************/
 void Board::printGameBoard()
 {
+	// Print items
+	player.displayItems();
+
 	// Print top boarder
 	std::cout << std::endl;
 	std::cout << "# # # # # # # # # # # # # # # # # # # # # # # # # # #" << std::endl;
@@ -174,7 +178,7 @@ void Board::createGameBoard()
 void Board::createMainRoom()
 {
 	// Blue Key
-	gameBoard[13][6] = new Key("b ", BLUEKEY);
+	gameBoard[13][6] = new Key("b ", BLUEKEY, "b");
 
 	// Walls
 	gameBoard[11][5] = new Wall; gameBoard[11][6] = new Wall; gameBoard[11][7] = new Wall;
@@ -194,7 +198,7 @@ void Board::createMainRoom()
 void Board::createIceRoom()
 {
 	// Green Key
-	gameBoard[1][5] = new Key("g ", GREENKEY);
+	gameBoard[1][5] = new Key("g ", GREENKEY, "g");
 
 	// Queries
 	gameBoard[10][10] = new Query; // gameBoard[][] = new Query; gameBoard[][] = new Query;
@@ -246,10 +250,10 @@ void Board::createIceRoom()
 void Board::createMazeRoom()
 {
 	// Red Key
-	gameBoard[22][8] = new Key("r ", REDKEY);
+	gameBoard[22][8] = new Key("r ", REDKEY, "r");
 
 	// Water boots
-	gameBoard[22][4] = new Boots("W ", WATERBOOTS);
+	gameBoard[22][4] = new Boots("W ", WATERBOOTS, "W");
 
 	// Queries
 	gameBoard[13][3] = new Query; gameBoard[17][2] = new Query; gameBoard[24][8] = new Query;
@@ -281,7 +285,7 @@ void Board::createWaterRoom()
 	gameBoard[17][13] = new Door("G ");
 
 	// Fire Boots
-	gameBoard[22][15] = new Boots("F ", FIREBOOTS);
+	gameBoard[22][15] = new Boots("F ", FIREBOOTS, "F");
 
 	// Queries
 	gameBoard[18][17] = new Query; gameBoard[24][17] = new Query; // gameBoard[][] = new Query;
@@ -309,7 +313,7 @@ void Board::createMixRoom()
 	gameBoard[15][18] = new Door("B ");
 
 	// Ice Boots
-	gameBoard[24][22] = new Boots("I ", ICEBOOTS);
+	gameBoard[24][22] = new Boots("I ", ICEBOOTS, "I");
 	
 	for (int i = 19; i <= 24; i++)
 	{

@@ -20,13 +20,15 @@ Boots::Boots()
 {
 	type = BOOTS;
 	symbol = "D ";
+	name = "";
 }
 
-Boots::Boots(std::string symbol, ItemType itemType)
+Boots::Boots(std::string symbol, ItemType itemType, std::string name)
 {
 	type = BOOTS;
 	this->symbol = symbol;
 	this->itemType = itemType;
+	this->name = name;
 }
 
 
@@ -36,6 +38,15 @@ Boots::Boots(std::string symbol, ItemType itemType)
 *********************************************************************/
 Boots::~Boots()
 {
+}
+
+
+/*********************************************************************
+** Description: Getter for name.
+*********************************************************************/
+std::string Boots::getName()
+{
+	return name;
 }
 
 

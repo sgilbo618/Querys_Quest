@@ -45,6 +45,7 @@ public:
 
 	// Item methods
 	bool hasThisItem(ItemType item);
+	void displayItems();
 
 	friend class Board;
 };

@@ -19,14 +19,16 @@
 Key::Key()
 {
 	type = KEY;
-	symbol = "D ";
+	symbol = "k ";
+	name = "k";
 }
 
-Key::Key(std::string symbol, ItemType itemType)
+Key::Key(std::string symbol, ItemType itemType, std::string name)
 {
 	type = KEY;
 	this->symbol = symbol;
 	this->itemType = itemType;
+	this->name = name;
 }
 
 
@@ -37,6 +39,16 @@ Key::Key(std::string symbol, ItemType itemType)
 Key::~Key()
 {
 }
+
+
+/*********************************************************************
+** Description: Getter for name.
+*********************************************************************/
+std::string Key::getName()
+{
+	return name;
+}
+
 
 
 /*********************************************************************

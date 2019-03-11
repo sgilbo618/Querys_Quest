@@ -16,11 +16,15 @@
 
 class Key : public Space
 {
+private:
+	std::string name;
+
 public:
 	Key();
-	Key(std::string symbol, ItemType itemType);
+	Key(std::string symbol, ItemType itemType, std::string name);
 	~Key();
 
+	std::string getName();
 	virtual void displayMessage();
 };
 

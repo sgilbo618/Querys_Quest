@@ -11,7 +11,10 @@
 
 #include "Player.hpp"
 #include "Door.hpp"
+#include "Key.hpp"
+#include "Boots.hpp"
 #include <iostream>
+#include <iomanip>
 
 
 /*********************************************************************
@@ -244,4 +247,50 @@ bool Player::hasThisItem(ItemType item)
 		}
 	}
 	return false;
+}
+
+
+/*********************************************************************
+** Function: displayItems()
+** Description: Displays the items the player has collected.
+*********************************************************************/
+void Player::displayItems()
+{
+	std::cout << std::endl << std::endl;
+	std::cout << "Query's Items" << std::endl;
+	std::cout << "-------------" << std::endl;
+
+	// Print keys
+	int numKeys = 0;
+	std::cout << " Keys: ";
+	for (int i = 0; i < numberOfItems; i++)
+	{
+		if (items[i]->getType() == KEY)
+		{
+			std::cout << static_cast<Key*>(items[i])->getName() << "  ";
+			numKeys++;
+		}
+	}
+	if (numKeys == 0)
+	{
+		std::cout << "empty";
+	}
+	std::cout << std::endl;
+
+	// Print boots
+	int numBoots = 0;
+	std::cout << "Boots: ";
+	for (int i = 0; i < numberOfItems; i++)
+	{
+		if (items[i]->getType() == BOOTS)
+		{
+			std::cout << static_cast<Boots*>(items[i])->getName() << "  ";
+			numBoots++;
+		}
+	}
+	if (numBoots == 0)
+	{
+		std::cout << "empty";
+	}
+	std::cout << std::endl;
 }
