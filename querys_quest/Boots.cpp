@@ -57,5 +57,19 @@ std::string Boots::getName()
 *********************************************************************/
 void Boots::displayMessage()
 {
-	std::cout << "Query found Boots!" << std::endl;
+	if (itemType == WATERBOOTS)
+	{
+		std::cout << "Query found the water boots!" << std::endl;
+		std::cout << "Now he can walk on water!" << std::endl;
+	}
+	else if (itemType == FIREBOOTS)
+	{
+		std::cout << "Query found the fire boots!" << std::endl;
+		std::cout << "Now he can walk on fire!" << std::endl;
+	}
+	else if (itemType == ICEBOOTS)
+	{
+		std::cout << "Query found the ice boots!" << std::endl;
+		std::cout << "Now he can walk on ice!" << std::endl;
+	}
 }

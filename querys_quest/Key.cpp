@@ -58,5 +58,16 @@ std::string Key::getName()
 *********************************************************************/
 void Key::displayMessage()
 {
-	std::cout << "Query found a key!" << std::endl;
+	if (itemType == REDKEY)
+	{
+		std::cout << "Query found the red key!" << std::endl;
+	}
+	else if (itemType == GREENKEY)
+	{
+		std::cout << "Query found the green key!" << std::endl;
+	}
+	else if (itemType == BLUEKEY)
+	{
+		std::cout << "Query found the blue key!" << std::endl;
+	}
 }

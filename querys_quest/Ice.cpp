@@ -40,5 +40,6 @@ Ice::~Ice()
 *********************************************************************/
 void Ice::displayMessage()
 {
-	std::cout << "Query is on ice without ice boots. Ice makes him slide until he gets a non-ice space" << std::endl;
+	std::cout << "Query is on ice without ice boots." << std::endl;
+	std::cout << "Ice makes him slide until he gets a non-ice space" << std::endl;
 }

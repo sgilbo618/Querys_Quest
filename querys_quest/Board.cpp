@@ -77,16 +77,14 @@ Board::~Board()
 *********************************************************************/
 void Board::runGame()
 {
-	//printGameBoard();
-
 	while (player.checkIsAlive() && !checkForWin())
 	{
+		player.displayItems();
 		printGameBoard();
 		player.movePlayer();
 		checkForElements();
 		checkForItems();
 		checkForQueries();
-		//printGameBoard();
 	}
 }
 
@@ -98,7 +96,7 @@ void Board::runGame()
 void Board::printGameBoard()
 {
 	// Print items
-	player.displayItems();
+	//player.displayItems();
 
 	// Print top boarder
 	std::cout << std::endl;
@@ -515,7 +513,8 @@ void Board::onIce()
 				break;
 			}
 			printGameBoard();
-			player.playerPtr->displayMessage();
+			Ice iceSpace;
+			iceSpace.displayMessage();
 		}
 		checkForElements();
 	}
