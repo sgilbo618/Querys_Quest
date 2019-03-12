@@ -20,6 +20,7 @@ Query::Query()
 {
 	type = QUERY;
 	symbol = "? ";
+	hasBeenCollected = false;
 }
 
 
@@ -29,6 +30,16 @@ Query::Query()
 *********************************************************************/
 Query::~Query()
 {
+}
+
+bool Query::getHasBeenCollected()
+{
+	return hasBeenCollected;
+}
+
+void Query::setHasBeenCollected(bool collected)
+{
+	this->hasBeenCollected = collected;
 }
 
 

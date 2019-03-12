@@ -16,9 +16,14 @@
 
 class Query : public Space
 {
+private:
+	bool hasBeenCollected;
+
 public:
 	Query();
 	~Query();
+	bool getHasBeenCollected();
+	void setHasBeenCollected(bool collected);
 	virtual void displayMessage();
 };
 

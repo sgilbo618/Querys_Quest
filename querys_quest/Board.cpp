@@ -180,6 +180,9 @@ void Board::createMainRoom()
 	// Blue Key
 	gameBoard[13][6] = new Key("b ", BLUEKEY, "b");
 
+	// Queries
+	gameBoard[15][8] = new Query;
+
 	// Walls
 	gameBoard[11][5] = new Wall; gameBoard[11][6] = new Wall; gameBoard[11][7] = new Wall;
 	gameBoard[11][10] = new Wall; gameBoard[11][11] = new Wall; gameBoard[11][12] = new Wall;
@@ -314,6 +317,9 @@ void Board::createMixRoom()
 
 	// Ice Boots
 	gameBoard[24][22] = new Boots("I ", ICEBOOTS, "I");
+
+	// Queries
+	gameBoard[13][21] = new Query;
 	
 	for (int i = 19; i <= 24; i++)
 	{
@@ -574,20 +580,23 @@ void Board::checkForItems()
 	SpaceType type = player.playerPtr->getType();
 	ItemType itemType = player.playerPtr->getItemType();
 
-	switch (type)
+	if (!player.hasThisItem(itemType))
 	{
-	case KEY:
-		unlockDoor();
-		player.items[player.numberOfItems] = player.playerPtr;
-		player.numberOfItems++;
-		player.playerPtr->displayMessage();
-		break;
+		switch (type)
+		{
+		case KEY:
+			unlockDoor();
+			player.items[player.numberOfItems] = player.playerPtr;
+			player.numberOfItems++;
+			player.playerPtr->displayMessage();
+			break;
 
-	case BOOTS:
-		player.items[player.numberOfItems] = player.playerPtr;
-		player.numberOfItems++;
-		player.playerPtr->displayMessage();
-		break;
+		case BOOTS:
+			player.items[player.numberOfItems] = player.playerPtr;
+			player.numberOfItems++;
+			player.playerPtr->displayMessage();
+			break;
+		}
 	}
 }
 
@@ -623,10 +632,11 @@ void Board::unlockDoor()
 *********************************************************************/
 void Board::checkForQueries()
 {
-	if (player.playerPtr->getType() == QUERY)
+	if (player.playerPtr->getType() == QUERY && !static_cast<Query*>(player.playerPtr)->getHasBeenCollected())
 	{
 		player.queries--;
 		player.playerPtr->displayMessage();
+		static_cast<Query*>(player.playerPtr)->setHasBeenCollected(true);
 	}
 
 	if (player.queries == 0)
