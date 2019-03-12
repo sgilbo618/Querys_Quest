@@ -7,12 +7,25 @@
 *********************************************************************/
 
 #include "Board.hpp"
+#include "Menus.hpp"
 #include <iostream>
 
 int main()
 {
-	Board gameBoard;
-	gameBoard.runGame();
+	Menus menu;
+	int selection = menu.mainMenu();
 
+	if (selection == 1)
+	{
+		do
+		{
+			Board gameBoard;
+			gameBoard.runGame();
+
+		} while (menu.playAgainMenu() == 1);
+	}
+
+	std::cout << std::endl << "GoodBye" << std::endl;
+	
 	return 0;
 }
