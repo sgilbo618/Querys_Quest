@@ -77,6 +77,8 @@ Board::~Board()
 *********************************************************************/
 void Board::runGame()
 {
+	player.displayMapKey();
+
 	while (player.checkIsAlive() && !checkForWin())
 	{
 		player.displayItems();

@@ -1,4 +1,4 @@
-/*********************************************************************
+﻿/*********************************************************************
 ** Program name: Query's Quest
 ** File: Player.cpp
 ** Author: Samantha Guilbeault
@@ -15,6 +15,7 @@
 #include "Boots.hpp"
 #include <iostream>
 #include <iomanip>
+#include <conio.h>
 
 
 /*********************************************************************
@@ -73,7 +74,77 @@ bool Player::checkIsAlive()
 *********************************************************************/
 void Player::movePlayer()
 {
-	std::string move = "";
+	int move = 0;
+
+	// Get move from user
+	std::cout << "Enter move: ";
+	move = _getch();
+	std::cout << std::endl;
+
+	if (move == 72 && playerPtr->getUp() != nullptr) // && is for boundry checking
+	{
+		makeMove(playerPtr->getUp());
+		direction = UP;
+	}
+	// Down
+	else if (move == 80 && playerPtr->getDown() != nullptr)
+	{
+		makeMove(playerPtr->getDown());
+		direction = DOWN;
+	}
+	// Left
+	else if (move == 75 && playerPtr->getLeft() != nullptr)
+	{
+		makeMove(playerPtr->getLeft());
+		direction = LEFT;
+	}
+	// Right
+	else if (move == 77 && playerPtr->getRight() != nullptr)
+	{
+		makeMove(playerPtr->getRight());
+		direction = RIGHT;
+	}
+	else if (move == 'q' || move == 'Q')
+	{
+		isAlive = false;
+	}
+	else if (move == 'i' || move == 'I')
+	{
+		displayMapKey();
+	}
+	else
+	{
+		std::cout << std::endl << "** Invalid Move" << std::endl;
+	}
+	
+	/*switch (move)
+	{
+		// Up
+	case 72:
+		makeMove(playerPtr->getUp());
+		direction = UP;
+		break;
+
+		// Down
+	case 80:
+		makeMove(playerPtr->getDown());
+		direction = DOWN;
+		break;
+
+		// Left
+	case 75:
+		makeMove(playerPtr->getLeft());
+		direction = LEFT;
+		break;
+
+		// Right
+	case 77:
+		makeMove(playerPtr->getRight());
+		direction = RIGHT;
+		break;
+	}*/
+
+	/* std::string move = "";
 
 	// Get move from user
 	do
@@ -114,7 +185,7 @@ void Player::movePlayer()
 	else
 	{
 		std::cout << "This is a wall - can't go here!" << std::endl;
-	}
+	}*/
 }
 
 
@@ -293,5 +364,38 @@ void Player::displayItems()
 	{
 		std::cout << "empty";
 	}
+	std::cout << std::endl;
+}
+
+/*********************************************************************
+** Function: displayMapKey()
+** Description: Prints the key codes for each type of space and item 
+**				on the game board.
+*********************************************************************/
+void Player::displayMapKey()
+{
+	std::cout << std::endl;
+	std::cout << "**********************************************************" << std::endl;
+	std::cout << "**                        Map Key                       **" << std::endl;
+	std::cout << "**********************************************************" << std::endl; 
+	std::cout << std::endl;
+	std::cout << "   ----------------------------------------------------   " << std::endl;
+	std::cout << "           Elements          |            Boots           " << std::endl;
+	std::cout << "   --------------------------|-------------------------   " << std::endl;
+	std::cout << "    /  ice        ~  water   |     I  ice     W  water    " << std::endl;
+	std::cout << "    *  fire                  |     F  fire                " << std::endl;
+	std::cout << "   --------------------------|-------------------------   " << std::endl;
+	std::cout << "             Doors           |            Keys            " << std::endl;
+	std::cout << "   --------------------------|-------------------------   " << std::endl;
+	std::cout << "    G  green      B  blue    |     g  green    b  blue    " << std::endl;
+	std::cout << "    R  red                   |     r  red                 " << std::endl;
+	std::cout << "   --------------------------|-------------------------   " << std::endl;
+	std::cout << "             Other           |          Controls          " << std::endl;
+	std::cout << "   --------------------------|-------------------------   " << std::endl;
+	std::cout << "    ?  queries    !  finish  |     ^  up       v  down    " << std::endl;
+	std::cout << "    #  walls                 |     <  left     >  right   " << std::endl;
+	std::cout << std::endl;
+	std::cout << "   Press q to quit" << std::endl;
+	std::cout << "   Press i for map key" << std::endl;
 	std::cout << std::endl;
 }

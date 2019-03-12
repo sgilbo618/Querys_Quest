@@ -47,6 +47,8 @@ public:
 	bool hasThisItem(ItemType item);
 	void displayItems();
 
+	void displayMapKey();
+
 	friend class Board;
 };
 
