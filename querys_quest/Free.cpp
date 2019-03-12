@@ -38,5 +38,4 @@ Free::~Free()
 *********************************************************************/
 void Free::displayMessage()
 {
-	std::cout << "Query moved" << std::endl;
 }

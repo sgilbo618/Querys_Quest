@@ -38,5 +38,6 @@ Query::~Query()
 *********************************************************************/
 void Query::displayMessage()
 {
-	std::cout << "Query found a query!" << std::endl;
+	std::cout << std::endl;
+	std::cout << "** Query found a query!" << std::endl;
 }

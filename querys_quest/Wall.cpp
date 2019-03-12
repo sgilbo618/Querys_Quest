@@ -39,5 +39,6 @@ Wall::~Wall()
 *********************************************************************/
 void Wall::displayMessage()
 {
-	std::cout << "This is a wall - can't go here!" << std::endl;
+	std::cout << std::endl;
+	std::cout << "** This is a wall - can't go here!" << std::endl;
 }

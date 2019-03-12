@@ -40,5 +40,6 @@ Water::~Water()
 *********************************************************************/
 void Water::displayMessage()
 {
-	std::cout << "Query is on Water without Water boots! - He dead" << std::endl;
+	std::cout << std::endl;
+	std::cout << "** Query is on Water without Water boots! - He dead" << std::endl;
 }

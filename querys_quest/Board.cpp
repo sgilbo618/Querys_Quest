@@ -447,7 +447,8 @@ void Board::onIce()
 {
 	if (player.hasThisItem(ICEBOOTS))
 	{
-		std::cout << "Query has Ice Boots so he can walk on ice" << std::endl;
+		std::cout << std::endl;
+		std::cout << "** Query has Ice Boots so he can walk on ice" << std::endl;
 	}
 	else
 	{
@@ -530,7 +531,8 @@ void Board::onFire()
 {
 	if (player.hasThisItem(FIREBOOTS))
 	{
-		std::cout << "Query has Fire Boots so he can walk on fire" << std::endl;
+		std::cout << std::endl;
+		std::cout << "** Query has Fire Boots so he can walk on fire" << std::endl;
 	}
 	else
 	{
@@ -549,7 +551,8 @@ void Board::onWater()
 {
 	if (player.hasThisItem(WATERBOOTS))
 	{
-		std::cout << "Query has Water Boots so he can walk on water" << std::endl;
+		std::cout << std::endl;
+		std::cout << "** Query has Water Boots so he can walk on water" << std::endl;
 	}
 	else
 	{
@@ -620,11 +623,11 @@ void Board::checkForQueries()
 {
 	if (player.playerPtr->getType() == QUERY)
 	{
-		player.queries++;
+		player.queries--;
 		player.playerPtr->displayMessage();
 	}
 
-	if (player.queries >= QUERIES_NEEDED)
+	if (player.queries == 0)
 	{
 		static_cast<Door*>(gameBoard[0][24])->setIsLocked(false);
 	}
@@ -632,7 +635,7 @@ void Board::checkForQueries()
 
 bool Board::checkForWin()
 {
-	if (player.playerPtr->getType() == DOOR && player.queries >= QUERIES_NEEDED)
+	if (player.playerPtr->getType() == DOOR && player.queries == 0)
 	{
 		return true;
 	}

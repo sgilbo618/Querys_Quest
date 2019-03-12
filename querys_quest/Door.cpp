@@ -61,7 +61,8 @@ void Door::setIsLocked(bool isLocked)
 *********************************************************************/
 void Door::displayMessage()
 {
-	
+	std::cout << std::endl;
+	std::cout << "** ";
 	if (isLocked)
 	{
 		if (symbol == "R ")

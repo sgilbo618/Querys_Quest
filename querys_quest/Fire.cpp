@@ -40,5 +40,6 @@ Fire::~Fire()
 *********************************************************************/
 void Fire::displayMessage()
 {
-	std::cout << "Query is on Fire without Fire boots! - He dead" << std::endl;
+	std::cout << std::endl;
+	std::cout << "** Query is on Fire without Fire boots! - He dead" << std::endl;
 }

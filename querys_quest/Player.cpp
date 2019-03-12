@@ -28,7 +28,7 @@ Player::Player()
 	isAlive = true;
 	steps = 0;
 	numberOfItems = 0;
-	queries = 0;
+	queries = QUERIES_NEEDED;
 }
 
 
@@ -256,9 +256,10 @@ bool Player::hasThisItem(ItemType item)
 *********************************************************************/
 void Player::displayItems()
 {
-	std::cout << std::endl << std::endl;
-	std::cout << "Query's Items" << std::endl;
-	std::cout << "-------------" << std::endl;
+	std::cout << std::endl;
+
+	// Print queries
+	std::cout << "Queries Remaining: " << queries << std::endl;
 
 	// Print keys
 	int numKeys = 0;
