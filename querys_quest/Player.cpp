@@ -27,7 +27,7 @@ Player::Player()
 	playerPtr = nullptr;
 	direction = UP;
 	isAlive = true;
-	steps = 0;
+	steps = MAX_STEPS;
 	numberOfItems = 0;
 	queries = QUERIES_NEEDED;
 }
@@ -56,12 +56,11 @@ Direction Player::getDirection()
 *********************************************************************/
 bool Player::checkIsAlive()
 {
-	if (steps >= MAX_STEPS)
+	if (steps == 0)
 	{
 		std::cout << "Query ran out of steps and died!" << std::endl;
 		isAlive = false;
 	}
-
 
 	return isAlive;
 }
@@ -208,8 +207,8 @@ void Player::makeMove(Space * moveSpace)
 		// set new space symbol to Q
 		playerPtr->setSpaceSymbol("Q ");
 
-		// increment steps
-		steps++;
+		// decrement steps
+		steps--;
 	}
 }
 
@@ -328,6 +327,9 @@ bool Player::hasThisItem(ItemType item)
 void Player::displayItems()
 {
 	std::cout << std::endl;
+
+	// Print steps
+	std::cout << "Steps Remaining: " << steps << std::endl;
 
 	// Print queries
 	std::cout << "Queries Remaining: " << queries << std::endl;

@@ -16,6 +16,7 @@
 
 #define MAX_STEPS 1000
 #define QUERIES_NEEDED 25
+
 enum Direction {UP, DOWN, LEFT, RIGHT};
 
 class Player
