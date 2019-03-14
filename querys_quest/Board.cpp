@@ -73,17 +73,28 @@ Board::~Board()
 
 /*********************************************************************
 ** Function: runGame()
-** Description:
+** Description: Driver function for the game. Each round, it checks
+**				for game ending conditions and if the game is not 
+**				over it calls functions to display items, the board,
+**				get and make moves, and checks for elements, items,
+**				and queries.
 *********************************************************************/
 void Board::runGame()
 {
+	// Display map key once at the beginning of game
 	player.displayMapKey();
 
+	// Run rounds until player is dead or has won
 	while (player.checkIsAlive() && !checkForWin())
 	{
+		// Display
 		player.displayItems();
 		printGameBoard();
+
+		// Make move
 		player.movePlayer();
+
+		// Check new space for stuff
 		checkForElements();
 		checkForItems();
 		checkForQueries();
@@ -160,8 +171,8 @@ void Board::setSpacePointers()
 
 
 /*********************************************************************
-** Function:
-** Description:
+** Function: createGameBoard()
+** Description: Calls all of the create room functions.
 *********************************************************************/
 void Board::createGameBoard()
 {
@@ -175,6 +186,12 @@ void Board::createGameBoard()
 	setSpacePointers();
 }
 
+
+/*********************************************************************
+** Function: createMainRoom()
+** Description: Adds all the spaces that make up the central starting 
+**				room.
+*********************************************************************/
 void Board::createMainRoom()
 {
 	// Blue Key
@@ -198,6 +215,11 @@ void Board::createMainRoom()
 
 }
 
+
+/*********************************************************************
+** Function: createIceRoom()
+** Description: Adds all the spaces that make up the ice room.
+*********************************************************************/
 void Board::createIceRoom()
 {
 	// Green Key
@@ -250,6 +272,11 @@ void Board::createIceRoom()
 	gameBoard[10][8] = new Ice; gameBoard[10][9] = new Ice;
 }
 
+
+/*********************************************************************
+** Function: createMazeRoom()
+** Description: Adds all the spaces that make up the maze-like room.
+*********************************************************************/
 void Board::createMazeRoom()
 {
 	// Red Key
@@ -282,6 +309,11 @@ void Board::createMazeRoom()
 	gameBoard[21][8] = new Fire;
 }
 
+
+/*********************************************************************
+** Function: createWaterRoom()
+** Description: Adds all the spaces that make up the water-maze room.
+*********************************************************************/
 void Board::createWaterRoom()
 {
 	// Green Door
@@ -310,6 +342,11 @@ void Board::createWaterRoom()
 	gameBoard[23][14] = new Water; gameBoard[23][15] = new Water; gameBoard[23][16] = new Water;
 }
 
+
+/*********************************************************************
+** Function: createMixRoom()
+** Description: Adds all the spaces to the room that has all elements.
+*********************************************************************/
 void Board::createMixRoom()
 {
 	// Blue Door
@@ -349,6 +386,11 @@ void Board::createMixRoom()
 	gameBoard[16][24] = new Fire; gameBoard[17][24] = new Fire; gameBoard[18][24] = new Fire;
 }
 
+
+/*********************************************************************
+** Function: createFinsihRoom()
+** Description: Adds all the spaces that make up the final room.
+*********************************************************************/
 void Board::createFinishRoom()
 {
 	// Final Door
@@ -426,6 +468,7 @@ void Board::fillInEmptySpaces()
 *********************************************************************/
 void Board::checkForElements()
 {
+	// Gets the current space element type
 	ElementType elementType = player.playerPtr->getElementType();
 
 	switch (elementType)
@@ -453,67 +496,72 @@ void Board::checkForElements()
 *********************************************************************/
 void Board::onIce()
 {
+	// When player has ice boots the ice spaces act like free spaces
 	if (player.hasThisItem(ICEBOOTS))
 	{
 		std::cout << std::endl;
 		std::cout << "** Query has Ice Boots so he can walk on ice" << std::endl;
 	}
+	// No ice boots makes player slide to next non-ice space
 	else
 	{
 		// Get direction
 		Direction direction = player.getDirection();
-		std::cout << direction << std::endl;
 
 		while (player.playerPtr->getElementType() == ICE)
 		{
 			switch (direction)
 			{
 			case UP:
+				// Next space is not a border or wall
 				if (player.playerPtr->getUp() != nullptr && player.playerPtr->getUp()->getType() != WALL)
 				{
+					// Move player to the next space up
+					// Does not call makeMove() because do not want it to count as a step
 					player.resetSpaceSymbol();
 					player.playerPtr = player.playerPtr->getUp();
 					player.playerPtr->setSpaceSymbol("Q ");
-					//player.makeMove(player.playerPtr->getUp());
 				}
+				// Next space is a border or wall
 				else
 				{
+					// Change to opposite direction to bounce player back
 					direction = DOWN;
 				}
 				break;
+
 			case DOWN:
 				if (player.playerPtr->getDown() != nullptr && player.playerPtr->getDown()->getType() != WALL)
 				{
 					player.resetSpaceSymbol();
 					player.playerPtr = player.playerPtr->getDown();
 					player.playerPtr->setSpaceSymbol("Q ");
-					//player.makeMove(player.playerPtr->getDown());
 				}
 				else
 				{
 					direction = UP;
 				}
 				break;
+
 			case LEFT:
 				if (player.playerPtr->getLeft() != nullptr && player.playerPtr->getLeft()->getType() != WALL)
 				{
 					player.resetSpaceSymbol();
 					player.playerPtr = player.playerPtr->getLeft();
 					player.playerPtr->setSpaceSymbol("Q ");
-					//player.makeMove(player.playerPtr->getUp());
 				}
 				else
 				{
 					direction = RIGHT;
 				}
 				break;
+
 			case RIGHT:
 				if (player.playerPtr->getRight() != nullptr && player.playerPtr->getRight()->getType() != WALL)
 				{
 					player.resetSpaceSymbol();
 					player.playerPtr = player.playerPtr->getRight();
 					player.playerPtr->setSpaceSymbol("Q ");
-					//player.makeMove(player.playerPtr->getUp());
 				}
 				else
 				{
@@ -521,10 +569,16 @@ void Board::onIce()
 				}
 				break;
 			}
+
+			// Print board to show each step of the slide
 			printGameBoard();
+
+			// Create a dummy ice space to display the correct message
 			Ice iceSpace;
 			iceSpace.displayMessage();
 		}
+
+		// Check for elements in case the slide ends on fire or water
 		checkForElements();
 	}
 }
@@ -537,11 +591,13 @@ void Board::onIce()
 *********************************************************************/
 void Board::onFire()
 {
+	// Fire boots make fire spaces act like free spaces
 	if (player.hasThisItem(FIREBOOTS))
 	{
 		std::cout << std::endl;
 		std::cout << "** Query has Fire Boots so he can walk on fire" << std::endl;
 	}
+	// No fire boots kills Query and ends game
 	else
 	{
 		player.isAlive = false;
@@ -557,11 +613,13 @@ void Board::onFire()
 *********************************************************************/
 void Board::onWater()
 {
+	// Water boots make water spaces act like free spaces
 	if (player.hasThisItem(WATERBOOTS))
 	{
 		std::cout << std::endl;
 		std::cout << "** Query has Water Boots so he can walk on water" << std::endl;
 	}
+	// No water boots kills Query and ends game
 	else
 	{
 		player.isAlive = false;
@@ -577,24 +635,31 @@ void Board::onWater()
 *********************************************************************/
 void Board::checkForItems()
 {
+	// Gets space type and item type
 	SpaceType type = player.playerPtr->getType();
 	ItemType itemType = player.playerPtr->getItemType();
 
+	// Player has not landed on this space before
 	if (!player.hasThisItem(itemType))
 	{
 		switch (type)
 		{
 		case KEY:
+			// Unlocks corresponding door
 			unlockDoor();
+			player.playerPtr->displayMessage();
+			
+			// Add item to item container
 			player.items[player.numberOfItems] = player.playerPtr;
 			player.numberOfItems++;
-			player.playerPtr->displayMessage();
 			break;
 
 		case BOOTS:
+			player.playerPtr->displayMessage();
+			
+			// Add item to item container
 			player.items[player.numberOfItems] = player.playerPtr;
 			player.numberOfItems++;
-			player.playerPtr->displayMessage();
 			break;
 		}
 	}
@@ -608,6 +673,7 @@ void Board::checkForItems()
 *********************************************************************/
 void Board::unlockDoor()
 {
+	// Get the item on current space to use in switch
 	switch (player.playerPtr->getItemType())
 	{
 	case REDKEY:
@@ -632,22 +698,33 @@ void Board::unlockDoor()
 *********************************************************************/
 void Board::checkForQueries()
 {
+	// Current space is a query and this is the first time on this space
 	if (player.playerPtr->getType() == QUERY && !static_cast<Query*>(player.playerPtr)->getHasBeenCollected())
 	{
 		player.queries--;
 		player.playerPtr->displayMessage();
+
+		// Update space to indicate this query has been collected already
 		static_cast<Query*>(player.playerPtr)->setHasBeenCollected(true);
 	}
 
+	// Lets player in final door only if they have all the queries
 	if (player.queries == 0)
 	{
 		static_cast<Door*>(gameBoard[0][24])->setIsLocked(false);
 	}
 }
 
+
+/*********************************************************************
+** Function: checkForWin()
+** Description: Returns true if player is on the final door and they
+**				have all the queries. Returns false otherwise
+*********************************************************************/
 bool Board::checkForWin()
 {
-	if (player.playerPtr->getType() == DOOR && player.queries == 0)
+	if (player.playerPtr == gameBoard[0][24] && player.queries == 0)
+	//if (player.playerPtr->getType() == DOOR && player.queries == 0)
 	{
 		return true;
 	}

@@ -3,7 +3,10 @@
 ** File: main.cpp
 ** Author: Samantha Guilbeault
 ** Date: 2-26-2019
-** Description:
+** Description: Contains the main function for the program which is 
+**				responsible for creating the game and calling the game
+**				driver function. Has a main menu and play again menu
+**				to get the user's option to play or exit.
 *********************************************************************/
 
 #include "Board.hpp"
