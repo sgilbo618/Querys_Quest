@@ -15,7 +15,8 @@
 #include "Boots.hpp"
 #include <iostream>
 #include <iomanip>
-#include <conio.h>
+//#include <ncurses.h> // For using arrow keys on Windows
+#include <conio.h> // For using arrow keys on Windows
 
 
 /*********************************************************************
@@ -81,7 +82,8 @@ void Player::movePlayer()
 
 	// Get move from user
 	std::cout << "Enter move: ";
-	move = _getch();
+	//move = _getch();
+	move = std::cin.get();
 	std::cout << std::endl;
 
 	// Up

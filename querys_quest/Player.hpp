@@ -15,7 +15,7 @@
 #include "Space.hpp"
 
 #define MAX_STEPS 600
-#define QUERIES_NEEDED 0
+#define QUERIES_NEEDED 25
 
 enum Direction {UP, DOWN, LEFT, RIGHT};
 
