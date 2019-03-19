@@ -51,7 +51,7 @@ Board::Board()
 
 	// Build player
 	player.playerPtr = gameBoard[15][15];
-	//player.playerPtr = gameBoard[5][24];
+	//player.playerPtr = gameBoard[2][24];
 	player.playerPtr->setSpaceSymbol("Q ");
 }
 
@@ -99,6 +99,9 @@ void Board::runGame()
 		checkForItems();
 		checkForQueries();
 	}
+	
+	// Print final game board
+	printGameBoard();
 }
 
 
@@ -724,7 +727,6 @@ void Board::checkForQueries()
 bool Board::checkForWin()
 {
 	if (player.playerPtr == gameBoard[0][24] && player.queries == 0)
-	//if (player.playerPtr->getType() == DOOR && player.queries == 0)
 	{
 		return true;
 	}
