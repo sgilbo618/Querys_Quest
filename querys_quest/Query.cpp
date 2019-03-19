@@ -32,6 +32,10 @@ Query::~Query()
 {
 }
 
+
+/*********************************************************************
+** Description: Getter and Setter for hasBeenCollected.
+*********************************************************************/
 bool Query::getHasBeenCollected()
 {
 	return hasBeenCollected;

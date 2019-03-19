@@ -42,10 +42,14 @@ Player::~Player()
 }
 
 
+/*********************************************************************
+** Description: Getter for direction.
+*********************************************************************/
 Direction Player::getDirection()
 {
 	return direction;
 }
+
 
 /*********************************************************************
 ** Function: checkIsAlive()
@@ -80,8 +84,10 @@ void Player::movePlayer()
 	move = _getch();
 	std::cout << std::endl;
 
+	// Up
 	if (move == 72 && playerPtr->getUp() != nullptr) // && is for boundry checking
 	{
+		// Pass disired move to makeMove
 		makeMove(playerPtr->getUp());
 		direction = UP;
 	}
@@ -103,10 +109,12 @@ void Player::movePlayer()
 		makeMove(playerPtr->getRight());
 		direction = RIGHT;
 	}
+	// q/Q allows user to exit game
 	else if (move == 'q' || move == 'Q')
 	{
 		isAlive = false;
 	}
+	// i/I allows user to print game information
 	else if (move == 'i' || move == 'I')
 	{
 		displayMapKey();
@@ -115,35 +123,12 @@ void Player::movePlayer()
 	{
 		std::cout << std::endl << "** Invalid Move" << std::endl;
 	}
+
+
+	/* 
+	*********** For if _getCh() won't work on flip
 	
-	/*switch (move)
-	{
-		// Up
-	case 72:
-		makeMove(playerPtr->getUp());
-		direction = UP;
-		break;
-
-		// Down
-	case 80:
-		makeMove(playerPtr->getDown());
-		direction = DOWN;
-		break;
-
-		// Left
-	case 75:
-		makeMove(playerPtr->getLeft());
-		direction = LEFT;
-		break;
-
-		// Right
-	case 77:
-		makeMove(playerPtr->getRight());
-		direction = RIGHT;
-		break;
-	}*/
-
-	/* std::string move = "";
+	std::string move = "";
 
 	// Get move from user
 	do
@@ -224,12 +209,14 @@ bool Player::checkLegalMove(Space* moveSpace)
 	bool isLegal = true;
 	SpaceType moveType = moveSpace->getType();
 
+	// Checks if next space is a wall
 	if (moveType == WALL)
 	{
 		moveSpace->displayMessage();
 		isLegal = false;
 	}
 
+	// Checks if Door is locked
 	if (moveType == DOOR)
 	{
 		if (static_cast<Door*>(moveSpace)->getIsLocked())
@@ -262,7 +249,7 @@ void Player::resetSpaceSymbol()
 	case FREE:
 		playerPtr->setSpaceSymbol("  ");
 		break;
-
+	// Unlocked Doors and items become vacant spaces after collection
 	case DOOR:
 		playerPtr->setSpaceSymbol("  ");
 		break;
@@ -278,7 +265,8 @@ void Player::resetSpaceSymbol()
 	case QUERY:
 		playerPtr->setSpaceSymbol("  ");
 		break;
-		
+	
+	// Elements return to their prevous symbol
 	case ELEMENT:
 	{
 		switch (elementType)
@@ -394,8 +382,8 @@ void Player::displayMapKey()
 	std::cout << "   --------------------------|-------------------------   " << std::endl;
 	std::cout << "             Other           |          Controls          " << std::endl;
 	std::cout << "   --------------------------|-------------------------   " << std::endl;
-	std::cout << "    ?  queries    !  finish  |     ^  up       v  down    " << std::endl;
-	std::cout << "    #  walls                 |     <  left     >  right   " << std::endl;
+	std::cout << "    Q  Query      !  finish  |     ^  up       v  down    " << std::endl;
+	std::cout << "    #  walls      ?  queries |     <  left     >  right   " << std::endl;
 	std::cout << std::endl;
 	std::cout << "   Press q to quit" << std::endl;
 	std::cout << "   Press i for map key" << std::endl;

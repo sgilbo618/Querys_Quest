@@ -1,8 +1,8 @@
 /*********************************************************************
-** Program name: Fantasy Combat Game
+** Program name: Query's Quest
 ** File: inputValidation.hpp
 ** Author: Samantha Guilbeault
-** Date: 2-3-2019
+** Date: 2-26-2019
 ** Description: Contains the implementation of input validation
 **				functions, including for integers and doubles.
 *********************************************************************/

@@ -23,6 +23,14 @@ Key::Key()
 	name = "k";
 }
 
+
+/*********************************************************************
+** Function: Key(string, ItemType, string)
+** Description: Constructor that takes in a string for the symbol of 
+**				the key, a string for the name of the key, and an 
+**				ItemType for the specific version of the key. Uses
+**				the input to create a specific version of a Key.
+*********************************************************************/
 Key::Key(std::string symbol, ItemType itemType, std::string name)
 {
 	type = KEY;
@@ -61,6 +69,7 @@ void Key::displayMessage()
 	std::cout << std::endl;
 	std::cout << "** ";
 
+	// Display message based on the spefic key that was found
 	if (itemType == REDKEY)
 	{
 		std::cout << "Query found the red key!" << std::endl;

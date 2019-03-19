@@ -23,6 +23,13 @@ Door::Door()
 	isLocked = true;
 }
 
+
+/*********************************************************************
+** Function: Door(string)
+** Description: Constructor that takes in a string for the symbol of
+**				a door and uses it to create a specific version of a
+**				Door.
+*********************************************************************/
 Door::Door(std::string symbol)
 {
 	type = DOOR;
@@ -63,6 +70,8 @@ void Door::displayMessage()
 {
 	std::cout << std::endl;
 	std::cout << "** ";
+
+	// When a door is locked, it cannot be passed
 	if (isLocked)
 	{
 		if (symbol == "R ")
@@ -82,6 +91,7 @@ void Door::displayMessage()
 			std::cout << "The final door is locked - Query needs to collect all of the queries to win." << std::endl;
 		}
 	}
+	// The door is unlocked messages
 	else
 	{
 		if (symbol == "R ")

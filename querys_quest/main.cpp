@@ -18,8 +18,11 @@ int main()
 	Menus menu;
 	int selection = menu.mainMenu();
 
+	// User wants to play
 	if (selection == 1)
 	{
+		// Continue to create and run a game as long as user selects
+		// to play again
 		do
 		{
 			Board gameBoard;
@@ -28,6 +31,7 @@ int main()
 		} while (menu.playAgainMenu() == 1);
 	}
 
+	// Done playing
 	std::cout << std::endl << "GoodBye" << std::endl;
 	
 	return 0;

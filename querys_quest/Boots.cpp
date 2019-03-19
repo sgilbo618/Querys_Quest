@@ -5,7 +5,7 @@
 ** Date: 2-26-2019
 ** Description: Contains the implementation of the class Boots which
 **				is a subclass of Space and represents Boots tiles in
-**				the game board.
+**				the game board. 
 *********************************************************************/
 
 #include "Boots.hpp"
@@ -23,6 +23,14 @@ Boots::Boots()
 	name = "";
 }
 
+
+/*********************************************************************
+** Function: Boots(string, ItemType, string)
+** Description: Constructor that takes in a string for the boot
+**				symbol, a string for the boot name, and an ItemType
+**				to define what kind of boot this will be. Uses the 
+**				input to create a specific version of a Boot.
+*********************************************************************/
 Boots::Boots(std::string symbol, ItemType itemType, std::string name)
 {
 	type = BOOTS;
@@ -60,6 +68,7 @@ void Boots::displayMessage()
 	std::cout << std::endl;
 	std::cout << "** ";
 
+	// Displays a different message for each type of different Boot
 	if (itemType == WATERBOOTS)
 	{
 		std::cout << "Query found the water boots!" << std::endl;
