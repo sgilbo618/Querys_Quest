@@ -150,6 +150,9 @@
     <ClInclude Include="..\..\..\Final_Project_Query%27s_Quest\Querys_Quest\querys_quest\Water.hpp" />
     <ClInclude Include="Wall.hpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Final_Project_Query%27s_Quest\Querys_Quest\querys_quest\makefile" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

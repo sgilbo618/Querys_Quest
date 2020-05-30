@@ -62,22 +62,16 @@ Board::Board()
 *********************************************************************/
 Board::~Board()
 {
-	// Delete Spaces
+	// Clear game board
 	for (int i = 0; i < ROWS; i++)
 	{
 		for (int j = 0; j < COLS; j++)
 		{
 			delete gameBoard[i][j];
-			gameBoard[i][j] = nullptr;
 		}
+		delete [] gameBoard[i];
 	}
-
-	// Delete gameBoard
-	for (int j = 0; j < ROWS; j++)
-	{
-		delete[] gameBoard[j];
-	}
-	delete[] gameBoard;
+	delete [] gameBoard;
 }
 
 
@@ -99,9 +93,11 @@ void Board::runGame()
 	{
 		// Display
 		player.displayItems();
+		std::cout << std::endl << "** Make a move";
+		std::cout << std::endl;
 		printGameBoard();
 
-		// Make move
+		// Make move;
 		player.movePlayer();
 
 		// Check new space for stuff
@@ -247,7 +243,7 @@ void Board::createIceRoom()
 	gameBoard[6][12] = new Wall; gameBoard[7][12] = new Wall; gameBoard[8][12] = new Wall;
 	gameBoard[9][12] = new Wall; gameBoard[10][12] = new Wall; gameBoard[11][0] = new Wall;
 	gameBoard[11][1] = new Wall; gameBoard[11][2] = new Wall; gameBoard[11][3] = new Wall;
-	gameBoard[11][4] = new Wall;
+	gameBoard[11][4] = new Wall; 
 
 	// Free
 	gameBoard[1][3] = new Free; gameBoard[2][1] = new Free;
@@ -260,10 +256,8 @@ void Board::createIceRoom()
 	for (int i = 0; i < 11; i++)
 	{
 		gameBoard[0][i] = new Water;
-
 		gameBoard[i][0] = new Water;
 		gameBoard[i][11] = new Water;
-
 	}
 	gameBoard[10][1] = new Water; gameBoard[10][2] = new Water; gameBoard[10][3] = new Water;
 
@@ -333,7 +327,7 @@ void Board::createWaterRoom()
 	gameBoard[22][15] = new Boots("F ", FIREBOOTS, "F");
 
 	// Queries
-	gameBoard[18][17] = new Query; gameBoard[24][17] = new Query;
+	gameBoard[18][17] = new Query; gameBoard[24][17] = new Query; // gameBoard[][] = new Query;
 	
 	// Walls
 	gameBoard[18][18] = new Wall;

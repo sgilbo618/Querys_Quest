@@ -105,4 +105,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Final_Project_Query%27s_Quest\Querys_Quest\querys_quest\makefile" />
+  </ItemGroup>
 </Project>
