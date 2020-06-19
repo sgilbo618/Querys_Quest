@@ -11,6 +11,8 @@
 #ifdef __linux__
 
 #include <termios.h>
+#include <stdio.h>
+
 static struct termios old, current;
 
 void initTermios(int echo);
