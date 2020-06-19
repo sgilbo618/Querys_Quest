@@ -16,7 +16,7 @@ Symbol | Element
 \# | wall
 / | ice
 ~ | water
-* | fire
+\* | fire
 
 
 ## Deployment
