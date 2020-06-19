@@ -14,10 +14,20 @@
 
 #include "Space.hpp"
 
+// Set up different input methods for linux and windows
+#ifdef __linux__
+	#include <termios.h>
+	#include "getCharInput.h"
+#else
+	#include <conio.h>
+#endif
+
+
 #define MAX_STEPS 600
 #define QUERIES_NEEDED 25
 
-enum Direction {UP, DOWN, LEFT, RIGHT};
+enum Direction { UP, DOWN, LEFT, RIGHT };
+
 
 class Player
 {

@@ -36,7 +36,7 @@ protected:
 public:
 	// Constructor and Destructor
 	Space();
-	~Space();
+	virtual ~Space();
 
 	// Getters and Setters
 	SpaceType getType();

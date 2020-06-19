@@ -16,7 +16,6 @@
 /*********************************************************************
 **Function: integerValidation()
 ** Description: Gets user input and returns it if it is an integer.
-** Source:  https://stackoverflow.com/questions/12721911/c-how-to-verify-is-the-data-input-is-of-the-correct-datatype
 *********************************************************************/
 int integerValidation()
 {
@@ -36,6 +35,7 @@ int integerValidation()
 			std::cout << "Enter again: ";
 		}
 	}
+	return 0;
 }
 
 

@@ -28,7 +28,7 @@
 ** Description: Default constructor for Board object.
 *********************************************************************/
 Board::Board()
-{	
+{
 	// Build 2D array of Spaces
 	gameBoard = new Space**[ROWS];
 
@@ -69,16 +69,16 @@ Board::~Board()
 		{
 			delete gameBoard[i][j];
 		}
-		delete [] gameBoard[i];
+		delete[] gameBoard[i];
 	}
-	delete [] gameBoard;
+	delete[] gameBoard;
 }
 
 
 /*********************************************************************
 ** Function: runGame()
 ** Description: Driver function for the game. Each round, it checks
-**				for game ending conditions and if the game is not 
+**				for game ending conditions and if the game is not
 **				over it calls functions to display items, the board,
 **				get and make moves, and checks for elements, items,
 **				and queries.
@@ -105,7 +105,7 @@ void Board::runGame()
 		checkForItems();
 		checkForQueries();
 	}
-	
+
 	// Print final game board
 	printGameBoard();
 }
@@ -198,7 +198,7 @@ void Board::createGameBoard()
 
 /*********************************************************************
 ** Function: createMainRoom()
-** Description: Adds all the spaces that make up the central starting 
+** Description: Adds all the spaces that make up the central starting
 **				room.
 *********************************************************************/
 void Board::createMainRoom()
@@ -220,7 +220,7 @@ void Board::createMainRoom()
 	gameBoard[17][7] = new Wall; gameBoard[17][8] = new Wall; gameBoard[17][9] = new Wall;
 	gameBoard[17][10] = new Wall; gameBoard[17][11] = new Wall; gameBoard[17][12] = new Wall;
 	gameBoard[17][14] = new Wall; gameBoard[17][15] = new Wall; gameBoard[17][16] = new Wall;
-	gameBoard[17][17] = new Wall; gameBoard[17][18] = new Wall; 
+	gameBoard[17][17] = new Wall; gameBoard[17][18] = new Wall;
 
 }
 
@@ -236,14 +236,14 @@ void Board::createIceRoom()
 
 	// Queries
 	gameBoard[10][10] = new Query; // gameBoard[][] = new Query; gameBoard[][] = new Query;
-	
+
 	// Walls
 	gameBoard[0][12] = new Wall; gameBoard[1][12] = new Wall; gameBoard[2][12] = new Wall;
 	gameBoard[3][12] = new Wall; gameBoard[4][12] = new Wall; gameBoard[5][12] = new Wall;
 	gameBoard[6][12] = new Wall; gameBoard[7][12] = new Wall; gameBoard[8][12] = new Wall;
 	gameBoard[9][12] = new Wall; gameBoard[10][12] = new Wall; gameBoard[11][0] = new Wall;
 	gameBoard[11][1] = new Wall; gameBoard[11][2] = new Wall; gameBoard[11][3] = new Wall;
-	gameBoard[11][4] = new Wall; 
+	gameBoard[11][4] = new Wall;
 
 	// Free
 	gameBoard[1][3] = new Free; gameBoard[2][1] = new Free;
@@ -291,7 +291,7 @@ void Board::createMazeRoom()
 
 	// Queries
 	gameBoard[13][3] = new Query; gameBoard[17][2] = new Query; gameBoard[24][8] = new Query;
-	
+
 	// Walls
 	gameBoard[13][1] = new Wall; gameBoard[13][2] = new Wall; gameBoard[14][1] = new Wall;
 	gameBoard[14][2] = new Wall; gameBoard[14][3] = new Wall; gameBoard[14][4] = new Wall;
@@ -328,7 +328,7 @@ void Board::createWaterRoom()
 
 	// Queries
 	gameBoard[18][17] = new Query; gameBoard[24][17] = new Query; // gameBoard[][] = new Query;
-	
+
 	// Walls
 	gameBoard[18][18] = new Wall;
 	gameBoard[19][18] = new Wall; gameBoard[20][18] = new Wall; gameBoard[21][18] = new Wall;
@@ -359,13 +359,13 @@ void Board::createMixRoom()
 
 	// Queries
 	gameBoard[13][21] = new Query;
-	
+
 	for (int i = 19; i <= 24; i++)
 	{
 		// Queries
 		gameBoard[20][i] = new Query;
 		gameBoard[21][i] = new Query;
-		
+
 		// Walls
 		gameBoard[11][i] = new Wall;
 
@@ -380,7 +380,7 @@ void Board::createMixRoom()
 		}
 	}
 	// More ice
-	gameBoard[13][19] = new Ice; gameBoard[13][20] = new Ice; gameBoard[13][22] = new Ice; 
+	gameBoard[13][19] = new Ice; gameBoard[13][20] = new Ice; gameBoard[13][22] = new Ice;
 	gameBoard[13][23] = new Ice;
 
 	// More fire
@@ -486,6 +486,9 @@ void Board::checkForElements()
 	case WATER:
 		onWater();
 		break;
+
+	default:
+		break;
 	}
 }
 
@@ -570,6 +573,9 @@ void Board::onIce()
 					direction = LEFT;
 				}
 				break;
+
+			default:
+				break;
 			}
 
 			// Print board to show each step of the slide
@@ -650,7 +656,7 @@ void Board::checkForItems()
 			// Unlocks corresponding door
 			unlockDoor();
 			player.playerPtr->displayMessage();
-			
+
 			// Add item to item container
 			player.items[player.numberOfItems] = player.playerPtr;
 			player.numberOfItems++;
@@ -658,10 +664,13 @@ void Board::checkForItems()
 
 		case BOOTS:
 			player.playerPtr->displayMessage();
-			
+
 			// Add item to item container
 			player.items[player.numberOfItems] = player.playerPtr;
 			player.numberOfItems++;
+			break;
+
+		default:
 			break;
 		}
 	}
@@ -688,6 +697,9 @@ void Board::unlockDoor()
 
 	case GREENKEY:
 		static_cast<Door*>(gameBoard[17][13])->setIsLocked(false);
+		break;
+
+	default:
 		break;
 	}
 }

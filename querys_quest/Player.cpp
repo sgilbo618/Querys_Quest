@@ -15,8 +15,7 @@
 #include "Boots.hpp"
 #include <iostream>
 #include <iomanip>
-//#include <ncurses.h> // For using arrow keys on Windows
-#include <conio.h> // For using arrow keys on Windows
+#include <stdio.h>
 
 
 /*********************************************************************
@@ -56,7 +55,7 @@ Direction Player::getDirection()
 ** Function: checkIsAlive()
 ** Description: Checks number of steps and what space the player is on
 **				and determines if the player is still alive or not.
-**				Sets and returns isAlive. Will return true if still 
+**				Sets and returns isAlive. Will return true if still
 **				alive or false if not.
 *********************************************************************/
 bool Player::checkIsAlive()
@@ -80,33 +79,37 @@ void Player::movePlayer()
 {
 	int move = 0;
 
-	// Get move from user
+	  // Get move from user
 	std::cout << "Enter move: ";
-	//move = _getch();
-	move = std::cin.get();
+#ifdef __linux__  // use getch() from getCharInput.cpp for linux
+	move = getch();
+#else
+	move = _getch(); // use _getch() from conios.h for windows
+#endif
+	//move = std::cin.get(); // For testing character moves
 	std::cout << std::endl;
 
 	// Up
-	if (move == 72 && playerPtr->getUp() != nullptr) // && is for boundry checking
+	if ((move == 72 || move == 'A') && playerPtr->getUp() != nullptr) // && is for boundry checking
 	{
 		// Pass disired move to makeMove
 		makeMove(playerPtr->getUp());
 		direction = UP;
 	}
 	// Down
-	else if (move == 80 && playerPtr->getDown() != nullptr)
+	else if ((move == 80 || move == 'B') && playerPtr->getDown() != nullptr)
 	{
 		makeMove(playerPtr->getDown());
 		direction = DOWN;
 	}
 	// Left
-	else if (move == 75 && playerPtr->getLeft() != nullptr)
+	else if ((move == 75 || move == 'D') && playerPtr->getLeft() != nullptr)
 	{
 		makeMove(playerPtr->getLeft());
 		direction = LEFT;
 	}
 	// Right
-	else if (move == 77 && playerPtr->getRight() != nullptr)
+	else if ((move == 77 || move == 'C') && playerPtr->getRight() != nullptr)
 	{
 		makeMove(playerPtr->getRight());
 		direction = RIGHT;
@@ -127,9 +130,9 @@ void Player::movePlayer()
 	}
 
 
-	/* 
+	/*
 	*********** For if _getCh() won't work on flip
-	
+
 	std::string move = "";
 
 	// Get move from user
@@ -171,7 +174,8 @@ void Player::movePlayer()
 	else
 	{
 		std::cout << "This is a wall - can't go here!" << std::endl;
-	}*/
+	}
+  */
 }
 
 
@@ -202,7 +206,7 @@ void Player::makeMove(Space * moveSpace)
 
 /*********************************************************************
 ** Function: checkLegalMove(Space*)
-** Description: Checks the space Player is attempting to access and 
+** Description: Checks the space Player is attempting to access and
 **				determines if the space is a legal move. Returns true
 **				if it is, false if it is not.
 *********************************************************************/
@@ -251,7 +255,7 @@ void Player::resetSpaceSymbol()
 	case FREE:
 		playerPtr->setSpaceSymbol("  ");
 		break;
-	// Unlocked Doors and items become vacant spaces after collection
+		// Unlocked Doors and items become vacant spaces after collection
 	case DOOR:
 		playerPtr->setSpaceSymbol("  ");
 		break;
@@ -267,8 +271,11 @@ void Player::resetSpaceSymbol()
 	case QUERY:
 		playerPtr->setSpaceSymbol("  ");
 		break;
-	
-	// Elements return to their prevous symbol
+
+	default:
+		break;
+
+		// Elements return to their prevous symbol
 	case ELEMENT:
 	{
 		switch (elementType)
@@ -283,6 +290,9 @@ void Player::resetSpaceSymbol()
 
 		case WATER:
 			playerPtr->setSpaceSymbol("~ ");
+			break;
+
+		default:
 			break;
 		}
 		break;
@@ -361,7 +371,7 @@ void Player::displayItems()
 
 /*********************************************************************
 ** Function: displayMapKey()
-** Description: Prints the key codes for each type of space and item 
+** Description: Prints the key codes for each type of space and item
 **				on the game board.
 *********************************************************************/
 void Player::displayMapKey()
@@ -369,7 +379,7 @@ void Player::displayMapKey()
 	std::cout << std::endl;
 	std::cout << "**********************************************************" << std::endl;
 	std::cout << "**                        Map Key                       **" << std::endl;
-	std::cout << "**********************************************************" << std::endl; 
+	std::cout << "**********************************************************" << std::endl;
 	std::cout << std::endl;
 	std::cout << "   ----------------------------------------------------   " << std::endl;
 	std::cout << "           Elements          |            Boots           " << std::endl;
