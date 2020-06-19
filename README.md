@@ -6,10 +6,21 @@ The game is played on a 2D game board with several rooms containing different ob
 Eventually, I would like to develope a GUI for this game, and then potentially add more levels, just like the game that inspired it. 
 
 ## Usage
-Use the arrow keys to navigate through the game board. Collect items and queries to solve the puzzle.
+Use the arrow keys to navigate through the game board. 
+Collect keys (r, g, b) to unlock the doors (R, G, B) to other rooms.
+Collect boots (I, W, F) for ability to traverse the elements (ice, water, fire).
+Collect all the queries (?) to unlock the final door (!).
+###Map Key:
+Symbol | Element
+------ | -------
+\# | wall
+/ | ice
+~ | water
+* | fire
+
 
 ## Deployment
-To deploy and play Query's Quest, check it out on [Repl.it](https://repl.it/@sgilbo/QuerysQuest).
+To deploy and play Query's Quest, check it out on [Repl.it](https://repl.it/@sgilbo/Querys-Quest).
 
 ## Built With
 C++
